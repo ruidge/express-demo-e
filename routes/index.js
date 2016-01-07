@@ -13,6 +13,10 @@ router.get('/blog', function (req, res, next) {
     res.render('blog', {title: 'blog'});
 });
 
+router.get('/about', function (req, res, next) {
+    res.render('about', {title: 'about'});
+});
+
 /* test mysql */
 router.get('/mysql', function (req, res, next) {
     var result = "";
