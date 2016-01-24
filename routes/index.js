@@ -17,6 +17,15 @@ router.get('/about', function (req, res, next) {
     res.render('about', {title: 'about'});
 });
 
+router.get('/test', function (req, res, next) {
+    res.render('test', {title: 'test:'});
+});
+
+router.get('/test/:id', function (req, res, next) {
+    var id = req.params.id;
+    res.render('test', {title: 'test:'+id});
+});
+
 /* test mysql */
 router.get('/mysql', function (req, res, next) {
     var result = "";
