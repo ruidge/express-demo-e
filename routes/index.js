@@ -1,6 +1,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var async = require('async');
+var mongoose = require('mongoose');
 
 var router = express.Router();
 
@@ -23,7 +24,17 @@ router.get('/test', function (req, res, next) {
 
 router.get('/test/:id', function (req, res, next) {
     var id = req.params.id;
-    res.render('test', {title: 'test:'+id});
+    res.render('test', {title: 'test:' + id});
+});
+
+router.get('/mongoose', function (req, res, next) {
+    var db = mongoose.connect('mongodb://127.0.0.1:27017/test');
+    db.connection.on('error', function (error) {
+        res.render('test', {title: '数据库连接失败：' + error});
+    });
+    db.connection.on('open', function () {
+        res.render('test', {title: '数据库连接成功!'});
+    });
 });
 
 /* test mysql */
