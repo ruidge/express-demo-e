@@ -46,9 +46,9 @@ router.get('/mongoose', function (req, res, next) {
     });
     TestEntity.save(function (err, doc) {
         if (err) {
-            res.render("error :" + err);
+            res.send("error :" + err);
         } else {
-            res.render(doc);
+            res.render('test', {title: doc});
         }
         db.close();
     });
