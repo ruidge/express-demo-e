@@ -19,6 +19,9 @@ router.get('/about', function (req, res, next) {
 });
 
 router.get('/test', function (req, res, next) {
+    console.log('/test');
+    next();
+}, function (req, res) {
     res.render('test', {title: 'test:'});
 });
 
@@ -28,12 +31,26 @@ router.get('/test/:id', function (req, res, next) {
 });
 
 router.get('/mongoose', function (req, res, next) {
-    var db = mongoose.connect('mongodb://127.0.0.1:27017/test');
-    db.connection.on('error', function (error) {
-        res.render('test', {title: '数据库连接失败：' + error});
+    var db = mongoose.connect("mongodb://127.0.0.1:27017/test");
+    var TestSchema = new mongoose.Schema({
+        name: {type: String},
+        age: {type: Number, default: 0},
+        email: {type: String},
+        time: {type: Date, default: Date.now}
     });
-    db.connection.on('open', function () {
-        res.render('test', {title: '数据库连接成功!'});
+    var TestModel = db.model("test1", TestSchema); //'test'相当于collection
+    var TestEntity = new TestModel({
+        name: 'helloworld',
+        age: 28,
+        emial: 'helloworld@qq.com'
+    });
+    TestEntity.save(function (err, doc) {
+        if (err) {
+            res.render("error :" + err);
+        } else {
+            res.render(doc);
+        }
+        db.close();
     });
 });
 
