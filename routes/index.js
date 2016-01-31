@@ -2,6 +2,7 @@ var express = require('express');
 var mysql = require('mysql');
 var async = require('async');
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt');
 
 var router = express.Router();
 
@@ -89,6 +90,11 @@ router.get('/mysql', function (req, res, next) {
         console.log("err: " + err);
     });
     res.render('mysql', {title: 'see log'});
+});
+
+router.get('/test/:id', function (req, res, next) {
+    var id = req.params.id;
+    res.render('test', {title: 'test:' + id});
 });
 
 module.exports = router;
