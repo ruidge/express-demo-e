@@ -17,6 +17,6 @@ router.get('/test/:id', test.testId);
 
 router.get('/mongoose', test.testMongoose);
 
-router.get('/mysql', test.testMysql);
+//router.get('/mysql', test.testMysql);
 
 module.exports = router;

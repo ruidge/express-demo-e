@@ -3,6 +3,7 @@
  */
 var mongoose = require('mongoose');
 var mysql = require('mysql');
+var async = require('async');
 
 
 module.exports.test = function (req, res, next) {
