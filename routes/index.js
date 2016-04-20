@@ -13,6 +13,8 @@ router.get('/about', index.indexAbout);
 
 router.get('/test', test.test);
 
+router.get('/testjjk', test.testjjk);
+
 router.get('/test/:id', test.testId);
 
 router.get('/mongoose', test.testMongoose);

@@ -7,10 +7,17 @@ var async = require('async');
 
 
 module.exports.test = function (req, res, next) {
-    console.log('/test');
-    next();
-}, function (req, res) {
+//    console.log('/test');
+//    next();
+//}, function (req, res) {
     res.render('test', {title: 'test:'});
+}
+
+module.exports.testjjk = function (req, res, next) {
+//    console.log('/test');
+//    next();
+//}, function (req, res) {
+    res.render('testjjk', {title: 'test:'});
 }
 
 module.exports.testId = function (req, res, next) {
