@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <% include header.ejs %>
+</head>
+<body>
+<% include navbar.ejs %>
+<div>
+    <h1><%= title %></h1>
+</div>
+
+<% include footer.ejs %>
+<script>
+    $(function () {
+        $('#bs-example-navbar-collapse-1 li').removeClass('active');
+        $('#id_tab_mock').addClass('active');
+    });
+</script>
+</body>
+</html>
