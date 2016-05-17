@@ -28,7 +28,7 @@
             if (this.checked) {
 //                window.jjk.setButtonEnable('buy_product', '1');
                 if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-                    alert('1');
+//                    alert('1');
                     window.external.invoke("setButtonEnable", {"type":"buy_product","enable":"1"}, function(status, result) {
 
                     });
@@ -40,7 +40,7 @@
             } else {
 //                window.jjk.setButtonEnable('buy_product', '0');
                 if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-                    alert('0');
+//                    alert('0');
                     window.external.invoke("setButtonEnable", {"type":"buy_product","enable":"0"}, function(status, result) {
 
                     });
