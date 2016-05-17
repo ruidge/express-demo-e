@@ -5,8 +5,19 @@
 </head>
 <body>
 <% include navbar.ejs %>
-<div>
-    <h1><%= title %></h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="alert alert-info" role="alert">模拟请求返回数据</div>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary" style="margin-top: 8px">新增</button>
+        </div>
+    </div>
+
+    <div id="list-content">
+
+    </div>
 </div>
 
 <% include footer.ejs %>
@@ -15,6 +26,7 @@
         $('#bs-example-navbar-collapse-1 li').removeClass('active');
         $('#id_tab_mock').addClass('active');
     });
+
 </script>
 </body>
 </html>
