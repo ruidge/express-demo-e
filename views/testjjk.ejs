@@ -2,7 +2,6 @@
 <html lang="zh-CN">
 <head>
     <% include header.ejs %>
-    <script src="/public/js/ios.invoke.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <% include navbar.ejs %>
@@ -21,28 +20,32 @@
 </div>
 
 <% include footer.ejs %>
+<script src="/js/ios.invoke.js" type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $("#cbx").change(function () {
             if (this.checked) {
 //                window.jjk.setButtonEnable('buy_product', '1');
                 if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-                    window.external.invoke("setButtonEnable", {}, function(status,
-                                                                        result) {
-                        alert('1');
+                    alert('1');
+                    window.external.invoke("setButtonEnable", {"type":"buy_product","enable":"1"}, function(status, result) {
+
                     });
                 } else if (/(Android)/i.test(navigator.userAgent)) {
+//                    alert('1');
                     window.jjk.setButtonEnable('buy_product', '1');
                 }
 
             } else {
 //                window.jjk.setButtonEnable('buy_product', '0');
                 if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-                    window.external.invoke("setButtonEnable", {}, function(status,
-                                                                        result) {
-                        alert('0');
+                    alert('0');
+                    window.external.invoke("setButtonEnable", {"type":"buy_product","enable":"0"}, function(status, result) {
+
                     });
                 } else if (/(Android)/i.test(navigator.userAgent)) {
+//                    alert('0');
                     window.jjk.setButtonEnable('buy_product', '0');
                 }
 
