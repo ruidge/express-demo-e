@@ -5,6 +5,7 @@ var index = require('../controllers/index')
 
 var router = express.Router();
 
+//index
 router.get('/', index.indexRoot);
 
 router.get('/blog', index.indexBlog);
@@ -13,6 +14,7 @@ router.get('/mock', index.indexMock);
 
 router.get('/about', index.indexAbout);
 
+//test
 router.get('/test', test.test);
 
 router.get('/testjjk', test.testjjk);

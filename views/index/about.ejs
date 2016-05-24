@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <% include header.ejs %>
+    <% include ../common/header.ejs %>
     <style>
         .panel {
             margin-left: 50px;
@@ -11,7 +11,7 @@
 
 </head>
 <body>
-<% include navbar.ejs %>
+<% include ../common/navbar.ejs %>
 
 <div class="panel panel-info">
     <div class="panel-heading">关于</div>
@@ -48,7 +48,7 @@
         </div>
     </div>
 </div>
-<% include footer.ejs %>
+<% include ../common/footer.ejs %>
 <script>
     $(function () {
         $('#bs-example-navbar-collapse-1 li').removeClass('active');

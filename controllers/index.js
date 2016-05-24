@@ -2,18 +2,18 @@
  * Created by ruidge on 2016/2/2.
  */
 module.exports.indexRoot = function (req, res, next) {
-    res.render('index', {title: 'ruidge'});
+    res.render('index/index', {title: 'ruidge'});
 }
 
 
 module.exports.indexBlog = function (req, res, next) {
-    res.render('blog', {title: 'blog'});
+    res.render('index/blog', {title: 'blog'});
 }
 
 module.exports.indexMock = function (req, res, next) {
-    res.render('mock', {title: 'mock'});
+    res.render('index/mock', {title: 'mock'});
 }
 
 module.exports.indexAbout = function (req, res, next) {
-    res.render('about', {title: 'about'});
+    res.render('index/about', {title: 'about'});
 }
