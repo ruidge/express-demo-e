@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
     <% include ../common/header.ejs %>
+    <link rel='stylesheet' href="/stylesheets/index_mock.css"/>
 </head>
 <body>
 <% include ../common/navbar.ejs %>
@@ -11,8 +12,30 @@
             <div class="alert alert-info" role="alert">模拟请求返回数据</div>
         </div>
         <div class="col-md-3">
-            <button type="button" class="btn btn-primary" style="margin-top: 8px">新增</button>
+            <button id="bt_add" type="button" class="btn btn-primary" style="margin-top: 8px">新增</button>
         </div>
+
+        <div class="layer">
+            <div class="content">
+                <div class="close">×</div>
+                <h3 class="layer-title">增加mock数据</h3>
+
+                <form role="form">
+                    <div class="form-group">
+                        <label for="mock_input_path">路径:</label>
+                        <input type="text" class="form-control" id="mock_input_path" placeholder="输入路径">
+
+                        <label for="mock_input_result">结果:</label>
+                        <textarea class="form-control" id="mock_input_result" rows="6" placeholder="输入结果"></textarea>
+
+                    </div>
+                    <button id="mock_form_confirm" class="btn btn-default">增加</button>
+                </form>
+
+            </div>
+        </div>
+
+
     </div>
 
     <div id="list-content">
@@ -27,6 +50,15 @@
         $('#id_tab_mock').addClass('active');
     });
 
+    $("#bt_add").on("click", function () {
+        $(".layer").css({"display": "block"});
+    });
+    $(".layer .close").on("click", function () {
+        $(".layer").css({"display": "none"});
+    });
+    $("#mock_form_confirm").on("click", function () {
+        alert($("#mock_input_path").val() + " " + $("#mock_input_result").val());
+    });
 </script>
 </body>
 </html>
