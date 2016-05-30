@@ -1,0 +1,45 @@
+css :postion
+
+.static {
+  position: static;
+}
+
+static 是默认值。任意 position: static; 的元素不会被特殊的定位。一个 static 元素表示它不会被“positioned”，一个 position 属性被设置为其他值的元素表示它会被“positioned”。
+
+.relative1 {
+  position: relative;
+}
+.relative2 {
+  position: relative;
+  top: -20px;
+  left: 20px;
+  background-color: white;
+  width: 500px;
+}
+
+两个relative会相对定位,如上:第二个与第一个会有重合部分
+
+.fixed {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 200px;
+  background-color: white;
+}
+
+fixed:相对于视窗来定位.如上一直在窗口的右下角
+
+.relative {
+  position: relative;
+  width: 600px;
+  height: 400px;
+}
+.absolute {
+  position: absolute;
+  top: 120px;
+  right: 0;
+  width: 300px;
+  height: 200px;
+}
+
+absolute:与fixed类似,相较于最近的relative定位,如果没有,与视窗一样.
