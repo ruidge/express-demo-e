@@ -1,7 +1,7 @@
 /**
  * Created by ruidge on 2016/2/2.
  */
-var mongoose = require('mongoose');
+var mongoose = require('../common/mongoose');
 var mysql = require('mysql');
 var async = require('async');
 
@@ -26,7 +26,7 @@ module.exports.testId = function (req, res, next) {
 }
 
 module.exports.testMongoose = function (req, res, next) {
-    var db = mongoose.connect("mongodb://127.0.0.1:27017/test");
+
     var TestSchema = new mongoose.Schema({
             name: {type: String},
             age: {type: Number, default: 0},
@@ -46,22 +46,30 @@ module.exports.testMongoose = function (req, res, next) {
         age: 12,
         emial: 'aaa@qq.com'
     });
-    aaa.save();
-
-    var TestModel = db.model("test1a", TestSchema/*,"bbb"*/);
-    var TestEntity = new TestModel({
-        name: 'helloworld',
-        age: 28,
-        emial: 'helloworld@qq.com'
-    });
-    TestEntity.save(function (err, doc) {
+    aaa.save(function (err, doc) {
         if (err) {
             res.send("error :" + err);
         } else {
             res.render('test', {title: doc});
         }
-        db.close();
+        //db.close();
     });
+
+    //var db = mongoose.connect("mongodb://127.0.0.1:27017/test");
+    //var TestModel = db.model("test1a", TestSchema/*,"bbb"*/);
+    //var TestEntity = new TestModel({
+    //    name: 'helloworld',
+    //    age: 28,
+    //    emial: 'helloworld@qq.com'
+    //});
+    //TestEntity.save(function (err, doc) {
+    //    if (err) {
+    //        res.send("error :" + err);
+    //    } else {
+    //        res.render('test', {title: doc});
+    //    }
+    //    db.close();
+    //});
 }
 
 module.exports.testMysql = function (req, res, next) {
