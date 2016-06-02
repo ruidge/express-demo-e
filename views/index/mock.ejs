@@ -15,7 +15,7 @@
             <button id="bt_add" type="button" class="btn btn-primary" style="margin-top: 8px">新增</button>
         </div>
 
-        <div class="layer">
+        <div class="layer" style="display: block">
             <div class="content">
                 <div class="close">×</div>
                 <h3 class="layer-title">增加mock数据</h3>
@@ -23,13 +23,16 @@
                 <form role="form">
                     <div class="form-group">
                         <label for="mock_input_path">路径:</label>
+                        <span id="span_path_empty" style="display: none" class="label label-warning">请输入路径</span>
                         <input type="text" class="form-control" id="mock_input_path" placeholder="输入路径">
 
                         <label for="mock_input_result">结果:</label>
+                        <span id="span_result_empty" style="display: none" class="label label-warning">请输入结果</span>
                         <textarea class="form-control" id="mock_input_result" rows="6" placeholder="输入结果"></textarea>
 
                     </div>
-                    <button id="mock_form_confirm" class="btn btn-default">增加</button>
+                    <!--默认是submit? 会刷新页面-->
+                    <button type="button" id="mock_form_confirm" class="btn btn-default">增加</button>
                 </form>
 
             </div>
@@ -45,20 +48,76 @@
 
 <% include ../common/footer.ejs %>
 <script>
+
+    function checkPathEmpty() {
+        var path = $("#mock_input_path").val();
+        if (!path) {
+            $("#span_path_empty").css({"display": "inline"});
+            return true;
+        } else {
+            $("#span_path_empty").css({"display": "none"});
+        }
+        return false;
+    }
+
+    function checkResultEmpty() {
+        var path = $("#mock_input_result").val();
+        if (!path) {
+            $("#span_result_empty").css({"display": "inline"});
+            return true;
+        } else {
+            $("#span_result_empty").css({"display": "none"});
+        }
+        return false;
+    }
+
+    function showLayer() {
+        $(".layer").css({"display": "block"});
+    }
+
+    function hideLayer() {
+        $(".layer").css({"display": "none"});
+    }
+
     $(function () {
         $('#bs-example-navbar-collapse-1 li').removeClass('active');
         $('#id_tab_mock').addClass('active');
     });
 
     $("#bt_add").on("click", function () {
-        $(".layer").css({"display": "block"});
+        showLayer();
     });
     $(".layer .close").on("click", function () {
-        $(".layer").css({"display": "none"});
+        hideLayer();
     });
+
     $("#mock_form_confirm").on("click", function () {
-        alert($("#mock_input_path").val() + " " + $("#mock_input_result").val());
+        var path = $("#mock_input_path").val();
+        var result = $("#mock_input_result").val();
+        if (!checkPathEmpty() && !checkResultEmpty()) {
+            var data = {
+                path: path,
+                result: result
+            };
+
+            console.log(JSON.stringify(data));
+
+            $.ajax({
+                type: "POST",
+                url: "/addmock",
+                // The key needs to match your method's input parameter (case-sensitive).
+                data: JSON.stringify(data),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data){alert(JSON.stringify(data));},
+                failure: function(errMsg) {
+                    alert(errMsg);
+                }
+            });
+        }
+
     });
+
 </script>
 </body>
 </html>
