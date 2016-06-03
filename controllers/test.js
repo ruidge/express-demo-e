@@ -1,10 +1,11 @@
 /**
  * Created by ruidge on 2016/2/2.
  */
-var mongoose = require('../common/mongoose');
+var modelIndex = require('../models/index');
 var mysql = require('mysql');
 var async = require('async');
 
+var mongoose = require('mongoose')
 
 module.exports.test = function (req, res, next) {
 //    console.log('/test');

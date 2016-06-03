@@ -2,9 +2,8 @@
  * Created by ruidge on 2016/5/31.
  */
 
-var mongoose = require('../common/mongoose');
-require('../models/mock');
-var MockModel = mongoose.model('Mock')
+var modelIndex = require('../models/index');
+var Mock = modelIndex.Mock;
 
 //router.post('/addmock', mock.addMock);
 module.exports.addMock = function (req, res, next) {
@@ -16,7 +15,12 @@ module.exports.addMock = function (req, res, next) {
 
     var str = body + "\n" + headers + "\n" + method + "\n" + url;
 
-    console.log(body);
+    //console.log(body);
+    //console.log(str);
+    console.log(req.body);
+    console.log(req.headers);
+
+    Mock.findByPath()
 
     //res.render('testraw', {title: str});
     //res.end();
