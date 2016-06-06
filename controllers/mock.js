@@ -22,17 +22,15 @@ module.exports.addMock = function (req, res, next) {
 
     Mock.findByPath()
 
-    //res.render('testraw', {title: str});
-    //res.end();
-    res.send(body);
-    //var mockModel = new MockModel(body);
-    ////
-    //mockModel.save(function (err, doc) {
-    //    if (err) {
-    //        res.send("error :" + err);
-    //    } else {
-    //        res.render('test', {title: body});
-    //    }
-    //});
+    var mockEntity = new Mock();
+    mockEntity.path = req.body.path;
+    mockEntity.result = req.body.result;
+    mockEntity.save(function (err, doc) {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(JSON.stringify(doc) + "  save success");
+        }
 
+    });
 }

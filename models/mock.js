@@ -15,10 +15,10 @@ var MockSchema = new mongoose.Schema({
 
 MockSchema.pre('save', function (next) {
     if (this.isNew) {
-        this.meta.createAt = this.meta.updateAt = Date.now()
+        this.createAt = this.updateAt = Date.now()
     }
     else {
-        this.meta.updateAt = Date.now()
+        this.updateAt = Date.now()
     }
 
     next()
