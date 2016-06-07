@@ -54,6 +54,7 @@ js判断:
 
 用String()来转换任意类型到string，或者直接调用某个对象的toString()方法；
 
+JavaScript把null、undefined、0、NaN和空字符串''视为false，其他值一概视为true。
 通常不必把任意类型转换为boolean再判断，因为可以直接写if (myVar) {...}；
 
 typeof操作符可以判断出number、boolean、string、function和undefined；
@@ -65,7 +66,6 @@ typeof操作符可以判断出number、boolean、string、function和undefined�
 判断某个全局变量是否存在用typeof window.myVar === 'undefined'；
 
 函数内部判断某个变量是否存在用typeof myVar === 'undefined'。
-
 
 
 

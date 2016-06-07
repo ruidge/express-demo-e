@@ -2,8 +2,9 @@
  * Created by ruidge on 2016/5/31.
  */
 
-var modelIndex = require('../models/index');
-var Mock = modelIndex.Mock;
+var models = require('../models');
+var entity = require('../entity');
+var Mock = models.Mock;
 
 //router.post('/addmock', mock.addMock);
 module.exports.addMock = function (req, res, next) {
@@ -27,10 +28,19 @@ module.exports.addMock = function (req, res, next) {
     mockEntity.result = req.body.result;
     mockEntity.save(function (err, doc) {
         if (err) {
-            res.send(err);
+            var result = new entity.Result();
+            if (err.code == 11000) {
+                result.code = entity.constants.CODE_PATH_ALREADY_EXISTS;
+                result.errorMsg = entity.constants.MSG_PATH_ALREADY_EXISTS;
+            }
         } else {
-            res.send(JSON.stringify(doc) + "  save success");
+            var result = new entity.Result();
+            result.code = 0;
+            result.successMsg = 'success';
+            result.result = doc;
         }
+        console.log(JSON.stringify(result));
+        res.send(result);
 
     });
 }
