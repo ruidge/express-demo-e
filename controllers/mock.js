@@ -14,12 +14,8 @@ module.exports.addMock = function (req, res, next) {
     var method = req.method;
     var url = req.url;
 
-    var str = body + "\n" + headers + "\n" + method + "\n" + url;
-
-    //console.log(body);
-    //console.log(str);
-    console.log(req.body);
-    console.log(req.headers);
+    //console.log(req.body);
+    //console.log(req.headers);
 
     Mock.findByPath()
 
