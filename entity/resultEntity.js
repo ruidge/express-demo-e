@@ -3,7 +3,6 @@
  */
 function Result() {
     this.code = 0;
-    this.successMsg = '';
     this.errorMsg = '';
     this.url = '';
     this.result = null;

@@ -32,7 +32,6 @@ module.exports.addMock = function (req, res, next) {
         } else {
             var result = new entity.Result();
             result.code = 0;
-            result.successMsg = 'success';
             result.result = doc;
         }
         console.log(JSON.stringify(result));
