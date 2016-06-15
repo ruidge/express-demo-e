@@ -17,6 +17,10 @@
     <h1><a href="JJK://PRODUCT/2">JJK://PRODUCT/2</a></h1>
 
     <h1><input type='checkbox' checked id='cbx'/> <a href="#">阅读须知</a></h1>
+
+    <h3>用户token是: <span id="token"></span></h3>
+
+    <h3>绑定流程id是: <span id="processid"></span></h3>
 </div>
 
 <% include common/footer.ejs %>
@@ -24,28 +28,43 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+
+        } else if (/(Android)/i.test(navigator.userAgent)) {
+            var token = window.jjk.getmToken();
+            $('#token').text(token);
+
+            var processid = window.jjk.getGeneticProcessId();
+            $('#processid').text(processid);
+        }
+    });
+
+
+    $(document).ready(function () {
         $("#cbx").change(function () {
             if (this.checked) {
 //                window.jjk.setButtonEnable('buy_product', '1');
                 if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-//                    alert('1');
-                    window.external.invoke("setButtonEnable", {"type":"buy_product","enable":"1"}, function(status, result) {
+                    window.external.invoke("setButtonEnable", {
+                        "type": "buy_product",
+                        "enable": "1"
+                    }, function (status, result) {
 
                     });
                 } else if (/(Android)/i.test(navigator.userAgent)) {
-//                    alert('1');
                     window.jjk.setButtonEnable('buy_product', '1');
                 }
 
             } else {
 //                window.jjk.setButtonEnable('buy_product', '0');
                 if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-//                    alert('0');
-                    window.external.invoke("setButtonEnable", {"type":"buy_product","enable":"0"}, function(status, result) {
+                    window.external.invoke("setButtonEnable", {
+                        "type": "buy_product",
+                        "enable": "0"
+                    }, function (status, result) {
 
                     });
                 } else if (/(Android)/i.test(navigator.userAgent)) {
-//                    alert('0');
                     window.jjk.setButtonEnable('buy_product', '0');
                 }
 
