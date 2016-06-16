@@ -21,6 +21,8 @@
     <h3>用户token是: <span id="token"></span></h3>
 
     <h3>绑定流程id是: <span id="processid"></span></h3>
+
+    <button class="btn btn-info" id="to_genes_collect_guide">基因采集</button>
 </div>
 
 <% include common/footer.ejs %>
@@ -34,9 +36,17 @@
             var token = window.jjk.getmToken();
             $('#token').text(token);
 
-            var processid = window.jjk.getGeneticProcessId();
+            var processid = window.jjk.getGenesProcessId();
             $('#processid').text(processid);
         }
+    });
+    $(document).ready(function () {
+        $("#to_genes_collect_guide").on("click", function () {
+            if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+            } else if (/(Android)/i.test(navigator.userAgent)) {
+                window.jjk.toGenesCollectGuide();
+            }
+        });
     });
 
 
