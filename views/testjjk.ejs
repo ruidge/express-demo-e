@@ -31,6 +31,20 @@
 <script type="text/javascript">
     $(document).ready(function () {
         if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+            window.external.invoke("getToken", {}, function (status, result) {
+                if (status == 200) {
+                    var token = result.token;
+                } else {
+                    alert("get value error.");
+                }
+            });
+            window.external.invoke("getGenesProcessId", {}, function (status, result) {
+                if (status == 200) {
+                    var processid = result.genesProcessId;
+                } else {
+                    alert("get value error.");
+                }
+            });
 
         } else if (/(Android)/i.test(navigator.userAgent)) {
             var token = window.jjk.getmToken();
@@ -43,6 +57,8 @@
     $(document).ready(function () {
         $("#to_genes_collect_guide").on("click", function () {
             if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                window.external.invoke("toGenesCollectGuide", {}, function (status, result) {
+                });
             } else if (/(Android)/i.test(navigator.userAgent)) {
                 window.jjk.toGenesCollectGuide();
             }
