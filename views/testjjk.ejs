@@ -34,6 +34,7 @@
             window.external.invoke("getToken", {}, function (status, result) {
                 if (status == 200) {
                     var token = result.token;
+                    $('#token').text(token);
                 } else {
                     alert("get value error.");
                 }
@@ -41,6 +42,7 @@
             window.external.invoke("getGenesProcessId", {}, function (status, result) {
                 if (status == 200) {
                     var processid = result.genesProcessId;
+                    $('#processid').text(processid);
                 } else {
                     alert("get value error.");
                 }
