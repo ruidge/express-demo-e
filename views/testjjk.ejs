@@ -34,20 +34,11 @@
     $(document).ready(function () {
         if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 
-            //callback hell
-            window.external.invoke("getToken", {}, function (status, result) {
-
-                window.external.invoke("getGenesProcessId", {}, function (status, result) {
-                    if (status == 200) {
-                        var processid = result.genesProcessId;
-                        $('#processid').text(processid);
-                    } else {
-                        alert("get value error.");
-                    }
-                });
+            window.external.invoke("getParams", {}, function (status, result) {
                 if (status == 200) {
-                    var token = result.token;
-                    $('#token').text(token);
+                    $('#token').text(result.token);
+                    $('#processid').text(result.sid);
+                    $('#flag').text(result.iflag);
                 } else {
                     alert("get value error.");
                 }
@@ -55,7 +46,8 @@
 
 
         } else if (/(Android)/i.test(navigator.userAgent)) {
-            var params = window.jjk.getParams();
+            var paramsStr = window.jjk.getParams();
+            var params = JSON.parse(paramsStr);
             $('#token').text(params.token);
             $('#processid').text(params.sid);
             $('#flag').text(params.iflag);
