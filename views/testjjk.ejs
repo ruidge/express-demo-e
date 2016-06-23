@@ -22,6 +22,8 @@
 
     <h3>绑定流程id是: <span id="processid"></span></h3>
 
+    <h3>flag是: <span id="flag"></span></h3>
+
     <button class="btn btn-info" id="to_genes_collect_guide">基因采集</button>
 </div>
 
@@ -53,11 +55,10 @@
 
 
         } else if (/(Android)/i.test(navigator.userAgent)) {
-            var token = window.jjk.getmToken();
-            $('#token').text(token);
-
-            var processid = window.jjk.getGenesProcessId();
-            $('#processid').text(processid);
+            var params = window.jjk.getParams();
+            $('#token').text(params.token);
+            $('#processid').text(params.sid);
+            $('#flag').text(params.iflag);
         }
     });
     $(document).ready(function () {
