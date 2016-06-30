@@ -6,23 +6,25 @@
 <body>
 <% include common/navbar.ejs %>
 <div>
-    <h1>testjjk</h1>
+    <h2>testjjk</h2>
 
-    <h1><a href="http://www.mi.com">http://www.mi.com</a></h1>
+    <h3><a href="http://www.mi.com">http://www.mi.com</a></h3>
 
-    <h1><a href="JJK://IM">JJK://IM</a></h1>
+    <h3><a href="JJK://IM">JJK://IM</a></h3>
 
-    <h1><a href="JJK://PRODUCT">JJK://PRODUCT</a></h1>
+    <h3><a href="JJK://PRODUCT">JJK://PRODUCT</a></h3>
 
-    <h1><a href="JJK://PRODUCT/2">JJK://PRODUCT/2</a></h1>
+    <h3><a href="JJK://PRODUCT/2">JJK://PRODUCT/2</a></h3>
 
-    <h1><input type='checkbox' checked id='cbx'/> <a href="#">阅读须知</a></h1>
+    <h3><input type='checkbox' checked id='cbx'/> <a href="javascript:void(0)">阅读须知</a></h3>
 
-    <h3>用户token是: <span id="token"></span></h3>
+    <h5>用户token是: <span id="token"></span></h5>
 
-    <h3>绑定流程id是: <span id="processid"></span></h3>
+    <h5>绑定流程id是: <span id="processid"></span></h5>
 
-    <h3>flag是: <span id="flag"></span></h3>
+    <h5>flag是: <span id="flag"></span></h5>
+
+    <h3><input type='checkbox' id='genes_filter'/> <a href="javascript:void(0)">显示筛选按钮</a></h3>
 
     <button class="btn btn-info" id="to_genes_collect_guide">基因采集</button>
 </div>
@@ -31,6 +33,11 @@
 <script src="/js/ios.invoke.js" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
+
+    function genesFilter(){
+        alert("调用了 genesFilter() 方法");
+    }
+
     $(document).ready(function () {
         if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 
@@ -68,7 +75,6 @@
     $(document).ready(function () {
         $("#cbx").change(function () {
             if (this.checked) {
-//                window.jjk.setButtonEnable('buy_product', '1');
                 if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
                     window.external.invoke("setButtonEnable", {
                         "type": "buy_product",
@@ -81,7 +87,6 @@
                 }
 
             } else {
-//                window.jjk.setButtonEnable('buy_product', '0');
                 if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
                     window.external.invoke("setButtonEnable", {
                         "type": "buy_product",
@@ -96,6 +101,37 @@
             }
         });
     });
+
+    $(document).ready(function () {
+        $("#genes_filter").change(function () {
+            if (this.checked) {
+                if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                    window.external.invoke("setButtonEnable", {
+                        "type": "genes_filter",
+                        "enable": "1"
+                    }, function (status, result) {
+
+                    });
+                } else if (/(Android)/i.test(navigator.userAgent)) {
+                    window.jjk.setButtonEnable('genes_filter', '1');
+                }
+
+            } else {
+                if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                    window.external.invoke("setButtonEnable", {
+                        "type": "genes_filter",
+                        "enable": "0"
+                    }, function (status, result) {
+
+                    });
+                } else if (/(Android)/i.test(navigator.userAgent)) {
+                    window.jjk.setButtonEnable('genes_filter', '0');
+                }
+
+            }
+        });
+    });
+
 
 </script>
 
