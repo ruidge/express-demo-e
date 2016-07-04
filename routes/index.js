@@ -3,6 +3,7 @@ var express = require('express');
 var test = require('../controllers/test')
 var index = require('../controllers/index')
 var mock = require('../controllers/mock')
+var markdown = require('../controllers/markdown')
 
 var router = express.Router();
 
@@ -29,6 +30,7 @@ router.get('/mongoose', test.testMongoose);
 //mock
 router.post('/addmock', mock.addMock);
 
-
+//md
+router.get('/md', markdown.indexMd);
 
 module.exports = router;

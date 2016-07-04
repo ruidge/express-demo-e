@@ -7,7 +7,8 @@ module.exports.indexRoot = function (req, res, next) {
 
 
 module.exports.indexBlog = function (req, res, next) {
-    res.render('index/blog', {title: 'blog'});
+    //res.render('index/blog', {title: 'blog'});
+    res.redirect('/md');
 }
 
 module.exports.indexMock = function (req, res, next) {
