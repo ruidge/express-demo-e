@@ -111,10 +111,18 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
 //                success: function(data){alert(JSON.stringify(data));},
-                failure: function(errMsg) {
+                failure: function (errMsg) {
                     alert(errMsg);
                 }
-            }).done(function(data){alert(JSON.stringify(data));});
+            }).done(function (data) {
+                if (data.code == 0) {
+                    hideLayer();
+                    var path = $("#mock_input_path").val("");
+                    var result = $("#mock_input_result").val("");
+                } else {
+                    alert(data.errorMsg);
+                }
+            });
 //            }).done(function(data){alert(data.path + " -- "  + data.result);});
         }
 

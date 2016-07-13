@@ -8,17 +8,11 @@ var async = require('async');
 var mongoose = require('mongoose')
 
 module.exports.test = function (req, res, next) {
-//    console.log('/test');
-//    next();
-//}, function (req, res) {
-    res.render('test', {title: 'test:'});
+    res.render('test', {title: 'test'});
 }
 
 module.exports.testjjk = function (req, res, next) {
-//    console.log('/test');
-//    next();
-//}, function (req, res) {
-    res.render('testjjk', {title: 'test:'});
+    res.render('testjjk', {title: 'testjjk'});
 }
 
 module.exports.testId = function (req, res, next) {
