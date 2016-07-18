@@ -11,6 +11,10 @@
     <div><%- locals.content %></div>
 </div>
 
+<script>
+    console.log(<%-JSON.stringify( locals )%>);
+</script>
+
 <% include ../common/footer.ejs %>
 <script>
     $(function () {
