@@ -140,13 +140,13 @@
             alert('This browser supports localStorage');
             if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
             } else if (/(Android)/i.test(navigator.userAgent)) {
-                var storage = window.localStorage;
-                if (!storage.getItem("pageLoadCount")) {
-                    storage.setItem("pageLoadCount", 0);
-                }
-                storage.pageLoadCount = parseInt(storage.getItem("pageLoadCount")) + 1;//必须格式转换
-                $('#id_localStorage').text(storage.pageLoadCount);
             }
+            var storage = window.localStorage;
+            if (!storage.getItem("pageLoadCount")) {
+                storage.setItem("pageLoadCount", 0);
+            }
+            storage.pageLoadCount = parseInt(storage.getItem("pageLoadCount")) + 1;//必须格式转换
+            $('#id_localStorage').text(storage.pageLoadCount);
         } else {
             alert('This browser does NOT support localStorage');
         }
