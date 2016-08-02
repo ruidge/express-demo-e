@@ -27,6 +27,8 @@
     <h3><input type='checkbox' id='genes_filter'/> <a href="javascript:void(0)">显示筛选按钮</a></h3>
 
     <button class="btn btn-info" id="to_genes_collect_guide">基因采集</button>
+
+    <h5>localStorage <span id="id_localStorage"></span></h5>
 </div>
 
 <% include common/footer.ejs %>
@@ -34,7 +36,7 @@
 
 <script type="text/javascript">
 
-    function genesFilter(){
+    function genesFilter() {
         alert("调用了 genesFilter() 方法");
     }
 
@@ -130,6 +132,24 @@
 
             }
         });
+    });
+
+    //localStorage
+    $(document).ready(function () {
+        if (window.localStorage) {
+            alert('This browser supports localStorage');
+            if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+            } else if (/(Android)/i.test(navigator.userAgent)) {
+                var storage = window.localStorage;
+                if (!storage.getItem("pageLoadCount")) {
+                    storage.setItem("pageLoadCount", 0);
+                }
+                storage.pageLoadCount = parseInt(storage.getItem("pageLoadCount")) + 1;//必须格式转换
+                $('#id_localStorage').text(storage.pageLoadCount);
+            }
+        } else {
+            alert('This browser does NOT support localStorage');
+        }
     });
 
 
