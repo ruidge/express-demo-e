@@ -34,10 +34,15 @@ npm start : 启动服务(port3000)
 文件就是一个module,对外接口是module.exports对象 <br/>
 module.exports VS. exports (本质var exports = module.exports;)<br/>
 require方法用于在其他文件加载这个接口 <br/>
-  
+
+#####React
+组件化; JSX; 虚拟DOM; <br/>
+ES6 & Babel & Webpack<br/>
 
 #####参考 <br/>
 > [https://github.com/alsotang/node-lessons](https://github.com/alsotang/node-lessons) <br/>
 > [http://blog.fens.me/series-nodejs/](http://blog.fens.me/series-nodejs/) <br/>
 > [https://github.com/tmallfe/tmallfe.github.io/issues/28](https://github.com/tmallfe/tmallfe.github.io/issues/28) <br/>
 > [http://javascript.ruanyifeng.com/nodejs/module.html](http://javascript.ruanyifeng.com/nodejs/module.html) <br/>
+> [https://hulufei.gitbooks.io/react-tutorial/content/webpack.html](https://hulufei.gitbooks.io/react-tutorial/content/webpack.html) <br/>
+> [http://wwsun.github.io/posts/react-with-es6-part-1.html](http://wwsun.github.io/posts/react-with-es6-part-1.html) <br/>

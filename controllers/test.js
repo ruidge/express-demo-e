@@ -15,6 +15,10 @@ module.exports.testjjk = function (req, res, next) {
     res.render('testjjk', {title: 'testjjk'});
 }
 
+module.exports.helloreact = function (req, res, next) {
+    res.render('helloreact',  {});
+}
+
 module.exports.testId = function (req, res, next) {
     var id = req.params.id;
     res.render('test', {title: 'test:' + id});
