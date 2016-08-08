@@ -21,7 +21,12 @@ module.exports = {
     },
     module: {
         loaders: [
-            {test: /src(\\|\/).+\.jsx?$/, exclude: /node_modules/, loader: 'babel', query: {presets: ['es2015', 'react']}}
+            {
+                test: /src(\\|\/).+\.jsx?$/,
+                exclude: /node_modules/,
+                loader: 'babel',
+                query: {presets: ['es2015', 'react']}
+            }
         ]
     },
     plugins: [
