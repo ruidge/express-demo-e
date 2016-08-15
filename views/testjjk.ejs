@@ -29,6 +29,8 @@
     <button class="btn btn-info" id="to_genes_collect_guide">基因采集</button>
 
     <h5>localStorage <span id="id_localStorage"></span></h5>
+
+    <h5>data是: <span id="data"></span></h5>
 </div>
 
 <% include common/footer.ejs %>
@@ -48,6 +50,7 @@
                     $('#token').text(result.token);
                     $('#processid').text(result.sid);
                     $('#flag').text(result.iflag);
+                    $('#data').text(result.data);
                 } else {
                     alert("get value error.");
                 }
@@ -60,6 +63,7 @@
             $('#token').text(params.token);
             $('#processid').text(params.sid);
             $('#flag').text(params.iflag);
+            $('#data').text(params.data);
         }
     });
     $(document).ready(function () {

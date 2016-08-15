@@ -21474,7 +21474,7 @@
 /* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -21504,14 +21504,15 @@
 	    }
 	
 	    _createClass(Root, [{
-	        key: 'render',
+	        key: "render",
 	        value: function render() {
+	            alert("haha");
 	            return _react2.default.createElement(
-	                'h1',
+	                "h1",
 	                null,
-	                'Hello from ',
+	                "Hello from ",
 	                this.props.phrase,
-	                '!'
+	                "!"
 	            );
 	        }
 	    }]);
