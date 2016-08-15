@@ -10,7 +10,7 @@ var dir_src = path.resolve(__dirname, 'src');
 var dir_build = path.resolve(__dirname, 'build');
 
 module.exports = {
-    entry: path.resolve(dir_src, 'main.jsx'),
+    entry: path.resolve(dir_src, 'main.js'),
     output: {
         path: dir_build, // for standalone building
         filename: 'bundle.js'
