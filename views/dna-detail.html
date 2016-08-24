@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no, email=no" />
+	<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"></script>
+	<link rel="stylesheet" href="static/css/dna-detail.css">
+	<script data-main="js/dna-detail.js" src="js/require.js"></script>
+</head>
+<body>
+	<div id="dna-detail" v-cloak>
+	  <div class="title"  v-on:click="riskId()">疾病介绍</div>
+	  <div class="content">{{replaceResult(result.intro)}}</div>
+	  <div class="gap"></div>
+	  <div class="title">基因风险</div>
+	  <div class="content risk">
+	    <div class="line"></div>
+	    <div class="risk-left">
+	      <span class="risk-left-title">相对风险</span>
+	      <span class="risk-left-num">{{ riskRelative(result.risk_relative)}}<span class="small">倍</span></span><br>
+	    </div>
+	    <div class="risk-right">
+	      <ul>
+	        <li>遗传风险</li>
+	        <li>
+	          <div class="progress-wrap">
+	            <div class="progress" v-bind:style="progressWidth(result.risk_absolute)"></div>
+	          </div>
+	        </li>
+	        <li class="progress-value">{{riskAbsolute(result.risk_absolute)}}%</li>
+	      </ul>
+	    </div>
+	  </div>
+	  <div class="gap"></div>
+	  <div class="title">报告解析</div>
+	  <div class="content">{{{replaceResult(result.risk_detail_report)}}}</div>
+	  <div class="gap"></div>
+	  <div class="title">遗传因素</div>
+	  <div class="content">{{result.genetic_factors}}</div>
+	  <div class="gap"></div>
+	  <div class="title">非环境因素</div>
+	  <div class="content">{{{replaceList(result.non_genetic_factors)}}}</div>
+	  <div class="gap"></div>
+	  <div class="title">筛查诊断</div>
+	  <div class="content">{{{replaceList(result.diagnosis)}}}</div>
+	  <div class="gap"></div>
+	  <div class="title">预防建议</div>
+	  <div class="content">{{{replaceList(result.prevention)}}}</div>
+	  <div class="gap"></div>
+	  <div class="title">营养保健</div>
+	  <div class="content">{{{replaceList(result.caring)}}}</div>
+	  <div class="gap"></div>
+	  <div class="title">基因位点</div>
+	  <div class="content">
+	    <ul class="locus-title">
+	      <li class="locus">位点</li>
+	      <li class="type">你的基因型</li>
+	      <li class="multiple">患病倍数</li>
+	    </ul>
+	    <ul class="locus-content">
+	      <li v-for="item in result.risk_detail_snp">
+	        <ul>
+	          <li class="locus">{{item.snp_risk_name}}</li>
+	          <li class="type">{{item.genotype}}</li>
+	          <li class="multiple">{{item.snp_risk_rank}}</li>
+	        </ul>
+	      </li>
+	    </ul>
+	  </div>
+	  <div class="logo">
+	    <span>疾病说明来自</span>
+	    <img src="static/images/medical-logo.png" alt="" />
+	  </div>
+	</div>
+</body>

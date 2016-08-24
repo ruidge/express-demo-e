@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no, email=no" />
+	<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"></script>
+	<link rel="stylesheet" href="static/css/dna-main.css" media="screen" title="no title" charset="utf-8">
+	<script data-main="js/dna-main.js" src="js/require.js"></script>
+</head>
+<body>
+	<div id="dna-main" v-cloak>
+		<div class="gap"></div>
+		<div class="result card">
+			<div class="content group">
+				<ul class="circle-list">
+					<li class="high circle"><div class="mask">{{result.h_risk}}</div><div class="circle-info">高风险</div></li>
+					<li class="middle circle"><div class="mask">{{result.n_risk}}</div><div class="circle-info">正常风险</div></li>
+					<li class="low circle"><div class="mask">{{result.l_risk}}</div><div class="circle-info">低风险</div></li>
+				</ul>
+			</div>
+			<div class="date">{{replace(resultDate)}}</div>
+		</div>
+		<div class="gap"></div>
+		<div class="explain card">
+			<div class="title">
+				<img class="icon" src="static/images/2.png" alt="" />
+				<span>医生汇总分析</span>
+			</div>
+			<div class="content total">
+				<ol>
+					<li>1. 基因检测分析是一种科学的基因数据解读方案，能够帮助您更好的了解基因与疾病之间的相关性。</li>
+					<li>2. 根据您的检测结果，高，正常，低风险疾病各有{{result.h_risk}}, {{result.n_risk}}, {{result.l_risk}}项。</li>
+				</ol>
+			</div>
+		</div>
+	  <div class="gap"></div>
+		<div class="list card">
+			<div class="title"  v-on:click="goOrderPage()">
+				<img class="icon" src="static/images/2.png" alt="" />
+				<span>疾病分类情况</span>
+				<img class="gonext" src="static/images/gonext.png" alt="" />
+			</div>
+			<div class="content sort">
+				<ol>
+					<li v-for="item in result.type_risk" v-on:click="goOrderPage(item.risk_type_order)">
+						<span class="cancer-left">
+							<img class="cancer-icon" src="static/images/2.png" alt="" />
+							<span class="cancer-name">{{item.risk_type_cn}}</span>
+						</span>
+						<span class="cancer-right">
+							<span class="cancer-risk" v-bind:class="fontColor(item.risk_type)">{{item.risk_type_desc}}</span>
+							<img class="cancer-gonext" src="static/images/gonext.png" alt="" />
+						</span>
+					</li>
+				</ol>
+			</div>
+		</div>
+	  <div class="gap"></div>
+		<div class="highest card" v-on:click="goDetailPage(result.high_risk.risk_uuid)">
+			<div class="title">
+		    <img class="icon" src="static/images/2.png" alt="" />
+		    <span>最高风险项-{{result.high_risk.risk_name_cn}}</span>
+		    <img class="gonext" src="static/images/gonext.png" alt="" />
+		  </div>
+		  <div class="content risk">
+				<div class="line"></div>
+		    <div class="risk-left">
+					<span class="risk-left-title">相对风险</span>
+					<span class="risk-left-num">{{riskAbsolute(result.high_risk.risk_relative)}}</span><span class="small"> 倍</span><br>
+		    </div>
+				<div class="risk-right">
+					<ul>
+						<li>遗传风险</li>
+						<li>
+							<div class="progress-wrap">
+								<div class="progress" v-bind:class="geneticRisk" v-bind:style="progressWidth(result.high_risk.risk_absolute)"></div>
+					    </div>
+						</li>
+						<li class="progress-value">{{riskAbsolute(result.high_risk.risk_absolute)}}%</li>
+					</ul>
+		    </div>
+		  </div>
+		</div>
+	  <div class="gap"></div>
+		<div class="hot card" v-on:click="goDetailPage(result.hot_risk.risk_uuid)">
+			<div class="title">
+		    <img class="icon" src="static/images/2.png" alt="" />
+		    <span>{{sex}}</span>
+		    <img class="gonext" src="static/images/gonext.png" alt="" />
+		  </div>
+		  <div class="content hot">
+		    <div class="hot-number">
+		      <span class="hot-number-title">患病风险值</span><br>
+		      <span class="hot-number-number">{{riskAbsolute(result.hot_risk.hot_risk_absolute)}}%</span>
+		    </div>
+		    <div class="hot-bar">
+					<div class="bigcircle">
+					  <div class="pie_left"><div class="left" v-bind:class="bgColor(result.hot_risk.hot_risk_order)" v-bind:style="circleLeft(result.hot_risk.hot_risk_absolute)"></div></div>
+					  <div class="pie_right"><div class="right" v-bind:class="bgColor(result.hot_risk.hot_risk_order)" v-bind:style="circleRight(result.hot_risk.hot_risk_absolute)"></div></div>
+					  <div class="mask"><span>{{result.hot_risk.hot_risk_order_cn}}</span></div>
+					</div>
+		    </div>
+		  </div>
+		</div>
+	  <div class="gap"></div>
+		<div class="average card">
+			<div class="title">
+		    <img class="icon" src="static/images/2.png" alt="" />
+		    <span>中国平均风险TOP5</span>
+		    <img class="gonext" src="static/images/gonext.png" alt="" />
+		  </div>
+		  <div class="content top">
+		    <ul>
+		      <li v-for="item in result.top_5_risk" v-on:click="goDetailPage(item.risk_uuid)"><div class="progress-wrap"><div class="progress" v-bind:class="bgColor(item.top_risk_order)"  v-bind:style="progressHeight(item.top_risk_relative)"></div></div><div class="progress-info">{{item.top_risk_name_cn}}</div></li>
+		    </ul>
+		  </div>
+		</div>
+	  <div class="gap"></div>
+	</div>
+</body>
+</html>

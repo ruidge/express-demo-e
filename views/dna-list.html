@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="format-detection" content="telephone=no, email=no" />
+	<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.2/??flexible_css.js,flexible.js"></script>
+	<link rel="stylesheet" href="static/css/dna-list.css">
+	<script data-main="js/dna-list.js" src="js/require.js"></script>
+</head>
+<body>
+	<div id="dna-list" v-cloak>
+		<div class="fifter">
+			<ul>
+				<li>排序{{riskOrder}}</li>
+				<li v-on:click=changeMethod(1)>患病率</li>
+				<li v-on:click=changeMethod(-1)>相对风险</li>
+			</ul>
+		</div>
+		<ul class="dna-list">
+			<li v-for="item in result.type_risk | filterBy riskOrder in 'risk_type_order'">
+			  <div class="header">
+			    <div class="title">
+			      <h3>{{item.risk_type_cn}}</h3>
+			      <p>{{item.risk_type_desc}}</p>
+			    </div>
+				</div>
+			  <div class="list">
+			    <ul>
+			      <li class="item" v-for="subitem in sort(item.risk_detail_info)" v-on:click="goDetailPage(subitem.risk_uuid)">
+							<div class="square-left" v-bind:class="bgColor(subitem.risk_order)"></div>
+							<div class="title">{{subitem.risk_name_cn}}</div>
+							<div class="content">{{riskAbsolute(subitem.risk_absolute)}}%</div>
+							<div class="progress">
+								<ul>
+									<li class="self" v-bind:class="bgColor(subitem.risk_order)" v-bind:style="progressWidth(subitem.risk_relative)"></li>
+									<li class="average"></li>
+								</ul>
+							</div>
+							<div class="square-right" v-bind:class="bgColor(subitem.risk_order)">{{riskRelative(subitem.risk_relative)}}倍</div>
+						</li>
+			    </ul>
+			  </div>
+			</li>
+		</ul>
+	</div>
+</body>

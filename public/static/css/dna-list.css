@@ -1,0 +1,164 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-size: 0.45rem;
+  font-family:  Arial, "Microsoft YaHei", "微软雅黑", "STHeiti",sans-serif;
+  color: #333;
+}
+#dna-list[v-cloak]{
+  display: none;
+}
+.fifter{
+  width: 100%;
+  height: 1.35rem;
+  line-height: 1.35rem;
+  background-color: #1d232c;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.fifter li{
+  width: 30%;
+  text-align: left;
+  float: left;
+  color: #bbbcbe;
+  font-size: 0.4rem;
+}
+.fifter li:first-child{
+  text-align: left;
+  padding-left: 5%;
+}
+.fifter li:last-child{
+  text-align: right;
+  margin-left: 2%;
+}
+.dna-list{
+  margin-top: 1.35rem;
+}
+/*.dna-list>li:first-child .header{
+  position: fixed;
+  top: 1rem;
+  left: 0;
+}*/
+.bg-blue{
+  background-color: #5ac2fc;
+}
+.bg-red{
+  background-color: #da4e40;
+}
+.bg-green{
+  background-color: #59d678;
+}
+.blue{
+  color: #5ac2fc;
+}
+.red{
+  color: #da4e40;
+}
+.green{
+  color: #59d678;
+}
+.black{
+  color: #283142;
+}
+.header.active .title{
+  padding: 0.3rem 0;
+}
+.header{
+  width: 100%;
+  height: 1rem;
+  padding: 0.2rem 0;
+  background-color: #fff;
+}
+.header .title{
+  width: 95%;
+  margin: 0 auto;
+}
+.header .title h3{
+  float: left;
+  font-weight: bold;
+  height: 1rem;
+  line-height: 1rem;
+}
+.header .title p{
+  float: right;
+  height: 1rem;
+  line-height: 1rem;
+}
+.list.active{
+  margin-top: 2.5rem;
+}
+.list{
+  width: 100%;
+}
+.list>ul>li:last-child{
+  border-bottom: 0.25rem solid #f4f4f4;
+}
+.list .item{
+  width: 100%;
+  height: 1.5rem;
+  border-top: 0.25rem solid #f4f4f4;
+}
+.list .item .square-left{
+  float: left;
+  height: 100%;
+  width: 0.2rem;
+}
+.list .item .title{
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.42rem;
+  text-indent: 0.41rem;
+  float: left;
+  width: 2.8rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.list .item .content{
+  float: left;
+  width: 1.8rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.42rem;
+  text-indent: 0.5rem;
+}
+.list .item .progress{
+  float: left;
+  width: 20%;
+  margin-left: 15%;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.42rem;
+  text-align: center;
+}
+.list .item .progress ul{
+  margin-top: 0.3rem;
+  height: 0.8rem;
+}
+.list .item .progress ul li{
+  height: 0.35rem;
+  margin-bottom: 0.2rem;
+}
+.list .item .progress ul li.average{
+  background-color: #f4f4f4;
+  width:10%;
+}
+.list .item .square-right{
+  float: right;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  color: #fff;
+  font-size: 0.2rem;
+}
+.red{
+  background-color: #ee5c55;
+}
+.green{
+  background-color: #5ad679;
+}
+.blue{
+  background-color: #5ac2fc;
+}

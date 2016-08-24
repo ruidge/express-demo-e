@@ -20,6 +20,8 @@ router.get('/test', test.test);
 
 router.get('/testjjk', test.testjjk);
 
+router.get('/testjjk6', test.testjjk6);
+
 router.get('/helloreact', test.helloreact);
 
 router.get('/test/:id', test.testId);

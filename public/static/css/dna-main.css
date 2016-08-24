@@ -1,0 +1,401 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-size: 0.45rem;
+  font-family:  Arial, "Microsoft YaHei", "微软雅黑", "STHeiti",sans-serif;
+}
+#dna-main[v-cloak]{
+  display: none;
+}
+#dna-main{
+  background-color: #1d232c;
+}
+.gap{
+  width: 100%;
+  background-color: #1d232c;
+  height: 0.6rem;
+}
+.card{
+  width: 93%;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 0.15rem;
+}
+.title{
+  height: 1.2rem;
+  line-height: 1.2rem;
+  width: 100%;
+  color: #283142;
+  font-size: 0.68rem;
+  border-bottom:1px solid #f4f4f4;
+}
+.title .gonext{
+  float: right;
+  margin-right: 0.4rem;
+  margin-top: 0.4rem;
+  width: 0.3rem;
+  height: 0.45rem;
+}
+.title .icon{
+  width: 0.6rem;
+  margin-top: 0.3rem;
+  margin-left: 2%;
+}
+.cancer-icon{
+  width: 0.6rem;
+  height: 0.6rem;
+}
+.cancer-gonext{
+  float: right;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+  margin-top: 0.4rem;
+  width: 0.3rem;
+  height: 0.45rem;
+}
+.result{
+  background-color: #1d232c;
+  color: #fff;
+}
+.content{
+    color: #283142;
+}
+.content.group{
+  height: 4rem;
+  width: 100%;
+}
+.content .circle-list{
+  width: 96%;
+  margin: 0 auto;
+  color: #fff;
+}
+.date{
+  width: 97%;
+  margin-top: 0.3rem;
+  height: 0.5rem;
+  text-align: right;
+  margin-right: 2%;
+  color: #a8a8a8;
+}
+.content .circle{
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  float: left;
+  position: relative;
+  margin-right: 0.5rem;
+}
+.content .circle.high{
+  background: linear-gradient(315deg, rgb(218,78,64), rgb(233, 150, 102));
+}
+.content .circle.middle{
+  background: linear-gradient(315deg, rgb(90,214,120), rgb(95, 213, 180));
+}
+.content .circle.low{
+  background: linear-gradient(315deg, rgb(91,194,252), rgb(99, 212, 220));
+}
+.content .circle .mask{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -1rem;
+  margin-top: -1rem;
+  text-align: center;
+  line-height: 2rem;
+  font-size: 0.8rem;
+  background-color: #1d232c;
+}
+.content .circle .circle-info{
+  margin-top: 3.1rem;
+  width: 2.8rem;
+  text-align: center;
+  height: 1rem;
+}
+.content .circle.low{
+  margin-right: 0rem;
+}
+.content.total{
+  width: 96%;
+  margin: 0 auto;
+  padding: 0.3rem 0;
+  font-size: 0.6rem;
+}
+.content.total li{
+  margin-bottom: 0.2rem;
+}
+.content.sort{
+  width: 100%;
+}
+.content.sort li{
+  width: 96%;
+  margin: 0 auto;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  border-bottom: 1px solid #f4f4f4;
+}
+.content.sort .cancer-left{
+  float: left;
+}
+.content.sort .cancer-right{
+  float: right;
+}
+.content.sort .cancer-right .high-risk{
+  color: #e2685b;
+}
+.content.risk{
+  width: 96%;
+  margin: 0 auto;
+  height: 4.5rem;
+  position: relative;
+}
+.content.risk .line{
+  position: absolute;
+  left: 50%;
+  top: 0.6rem;
+  height: 3.5rem;
+  width: 0.04rem;
+  background-color: #ccc;
+  z-index: 3;
+}
+.content.risk .risk-left{
+  float: left;
+  height: 5rem;
+  width: 50%;
+}
+.content.risk .risk-left .label-list{
+  width: 100%;
+  height: 1rem;
+  margin-top: 0.4rem;
+  margin-left: 0.2rem;
+}
+.content.risk .risk-left .label-list li{
+  float: left;
+  margin-right: 0.2rem;
+  font-size: 0.35rem;
+}
+.content.risk .risk-left .label-list li span{
+  height: 0.35rem;
+  width: 0.35rem;
+  display: inline-block;
+  margin-right: 0.1rem;
+}
+.content.risk .risk-left{
+  float: left;
+  height: 5rem;
+  width: 49%;
+}
+.content.risk .risk-left .risk-left-title{
+  font-size: 0.5rem;
+  display: inline-block;
+  margin-top: 1.2rem;
+  text-indent: 10%;
+}
+.content.risk .risk-left .risk-left-num{
+  font-size: 1.2rem;
+  margin-top: 0.1rem;
+  display: inline-block;
+  text-indent: 10%;
+  width: 2.8rem;
+  float: left;
+  overflow: hidden;
+}
+.content.risk .risk-left .small{
+  font-size: 0.5rem;
+  margin-top: 0.6rem;
+  float: left;
+}
+.content.risk .risk-right{
+  float: right;
+  width: 45%;
+}
+.content.risk .risk-right ul{
+  margin-top: 1rem;
+}
+.content.risk .risk-right ul li{
+  height: 1rem;
+}
+.content.risk .risk-right ul li .progress-wrap{
+  width: 97%;
+  height: 0.6rem;
+  background-color: #f7f7f7;
+}
+.content.risk .risk-right ul li .progress-wrap .progress{
+  width: 50%;
+  height: 100%;
+  background-color: #da4e40;
+  animation:barX 1s;
+  -webkit-animation:barX 1s;
+}
+.content.risk .risk-right ul li.progress-value{
+  font-size: 0.6rem;
+  height: 0.7rem;
+  width: 3.5rem;
+  overflow: hidden;
+}
+.content.hot{
+  width: 90%;
+  height: 4rem;
+  margin: 0 auto;
+}
+.content.hot .hot-number{
+  float: left;
+  width: 35%;
+  margin-left: 5%;
+  margin-top: 0.8rem;
+}
+.content.hot .hot-number .hot-number-number{
+  font-size: 0.7rem;
+  margin-top: 0.4rem;
+  display: inline-block;
+  float: left;
+  width: 2.4rem;
+}
+.content.hot .hot-number .hot-number-title{
+  font-size: 0.53rem;
+  width: 100%;
+}
+.content.hot .hot-bar{
+  float: right;
+  width: 50%;
+}
+.content.hot .bar-wrap{
+  width: 2.3rem;
+  height: 2.3rem;
+  border: 0.5rem #ccc solid;
+  border-radius: 50%;
+  position: relative;
+}
+.content.hot .bar{
+  width: 2.3rem;
+  height: 2.3rem;
+  border: 0.7rem #0f0 solid;
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.content .hot-bar .bigcircle{
+   width: 3.2rem;
+   height: 3.2rem;
+   border-radius: 50%;
+   background: #f7f7f7;
+   animation:circle 2s;
+   -webkit-animation:circle 2s; /* Safari and Chrome */
+   position: relative;
+   margin-top: 0.4rem;
+   float: right;
+ }
+.content .hot-bar .pie_left, .pie_right{
+   width:3.2rem;
+   height:3.2rem;
+   position: absolute;
+   top: 0;
+   left: 0;
+   transform: scale(1.1);
+ }
+ .content .hot-bar .left, .right{
+   width:3.2rem;
+   height:3.2rem;
+   border-radius: 50%;
+   position: absolute;
+   top: 0;
+   left: 0;
+ }
+ .content .hot-bar .pie_right, .right{
+   clip:rect(0,auto,auto,1.6rem);
+ }
+ .content .hot-bar .pie_left, .left{
+   clip:rect(0,1.6rem,auto,0);
+ }
+ .content .hot-bar .mask{
+   width: 2.4rem;
+   height: 2.4rem;
+   border-radius: 50%;
+   left: 0.4rem;
+   top: 0.4rem;
+   background: #fff;
+   position: absolute;
+   text-align: center;
+   line-height: 2.4rem;
+ }
+.content .hot-bar .mask span{
+    font-size: 0.6rem;
+ }
+.content.top{
+  width: 90%;
+  height: 4.5rem;
+  margin: 0.6rem auto;
+}
+.content.top li{
+  float: left;
+  height: 4rem;
+  width: 20%;
+}
+.content.top li .progress-wrap{
+  height: 3rem;
+  width: 35%;
+  margin: 0 auto;
+  background-color: #f7f7f7;
+  position: relative;
+}
+.content.top li .progress{
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  animation:bar 1s;
+  -webkit-animation:bar 1s;
+}
+.content.top li .progress-info{
+  text-align: center;
+  margin-top: 0.2rem;
+  font-size: 0.4rem;
+}
+.bg-blue{
+  background-color: #5ac2fc;
+}
+.bg-red{
+  background-color: #da4e40;
+}
+.bg-green{
+  background-color: #59d678;
+}
+.blue{
+  color: #5ac2fc;
+}
+.red{
+  color: #da4e40;
+}
+.green{
+  color: #59d678;
+}
+.black{
+  color: #283142;
+}
+ @keyframes circle{
+   from {transform: rotate(0deg);}
+   to {transform: rotate(360deg);}
+ }
+ @-webkit-keyframes circle{
+   from {transform: rotate(0deg);}
+   to {transform: rotate(360deg);}
+ }
+ @keyframes bar{
+   from {height:0;}
+   to {height: height;}
+ }
+ @-webkit-keyframes bar{
+   from {height:0;}
+   to {height: height;}
+ }
+ @keyframes barX{
+   from {width:0;}
+   to {width: width;}
+ }
+ @-webkit-keyframes barX{
+   from {width:0;}
+   to {width: width;}
+ }

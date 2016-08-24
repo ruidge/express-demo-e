@@ -1,0 +1,120 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-size: 0.45rem;
+  font-family:  Arial, "Microsoft YaHei", "微软雅黑", "STHeiti",sans-serif;
+  color: #333;
+}
+html{
+  width: 100%;
+  min-height: 100%;
+  background-color: #1d232c;
+}
+body{
+  width: 100%;
+  min-height: 100%;
+  background-color: #1d232c;
+}
+.header{
+  width: 100%;
+  height: 1.22rem;
+  overflow: hidden;
+  position: relative;
+}
+.header .bodysys-list{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.header .bodysys-list li{
+  height: 1.2rem;
+  line-height: 1.2rem;
+  text-align: center;
+  width: 25%;
+  color: #fff;
+  float: left;
+}
+.header .bodysys-list li.active{
+  height: 1.12rem;
+  border-bottom: 0.08rem solid #65d3dc;
+  color: #65d3dc;
+}
+.bodysys{
+  width: 100%;
+  height: 12rem;
+  background-color: #1d232c;
+  overflow: hidden;
+  position: relative;
+}
+.bodysys li img{
+  width: 100%;
+  height: 12rem;
+}
+.bodysys .button .prev{
+  position: absolute;
+  left: 0;
+  top: 45%;
+}
+.bodysys .button .next{
+  position: absolute;
+  right: 0;
+  top: 45%;
+}
+.bodysys .bodysys-img{
+  width: 100%;
+  background-color: #1d232c;
+}
+.bodysys .bodysys-img img{
+  width: 4.5rem;
+  height: 90%;
+  padding: 0.4rem 0;
+  display: block;
+  margin: 0 auto;
+}
+.bodysys-info-detail .bodysys-info-item:first-child{
+  border-top: 0.3rem #eee solid;
+  background-color: #fff;
+}
+.bodysys-info-detail .bodysys-info-item{
+  width: 100%;
+  height: 1.5rem;
+  background-color: #fff;
+  border-bottom: 0.3rem #eee solid;
+}
+.bodysys-info-detail .bodysys-info-item .square-left{
+  float: left;
+  height: 100%;
+  width: 0.2rem;
+}
+.bodysys-info-detail .bodysys-info-item .title{
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.45rem;
+  text-indent: 0.4rem;
+  float: left;
+}
+.bodysys-info-detail .bodysys-info-item .content{
+  float: left;
+  text-indent: 0.6rem;
+  width: 60%;
+  font-size: 0.45rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+}
+.bodysys-info-detail .bodysys-info-item .square-right{
+  float: right;
+  width: 1.5rem;
+  height: 100%;
+  text-align: center;
+  line-height: 1.5rem;
+  color: #fff;
+}
+.red{
+  background-color: #ee5c55;
+}
+.green{
+  background-color: #5ad679;
+}
+.blue{
+  background-color: #63d3dc;
+}

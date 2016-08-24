@@ -1,0 +1,82 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-size: 0.45rem;
+  font-family:  Arial, "Microsoft YaHei", "微软雅黑", "STHeiti",sans-serif;
+  text-align: center;
+}
+html,body{
+  width: 100%;
+  height: 100%;
+}
+#questionnaire-score[v-cloak]{
+  display: none;
+}
+#questionnaire-score{
+  width: 100%;
+  height: 100%;
+  background-color: #1d222c;
+  position: relative;
+}
+#questionnaire-score .content{
+  width: 90%;
+  height: 90%;
+  margin: 5%;
+  float: left;
+  background-color: #fff;
+  border-radius: 0.15rem;
+}
+#questionnaire-score .content .img{
+  width: 100%;
+  height: 3.2rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1rem;
+}
+#questionnaire-score .content .img img{
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  margin: 0 auto;
+  display: block;
+}
+#questionnaire-score .content{
+  font-size: 0.6rem;
+}
+#questionnaire-score .content .title{
+  margin-bottom: 1rem;
+}
+#questionnaire-score .content .option{
+  height: 1.4rem;
+  width: 80%;
+  margin-bottom: 0.4rem;
+  display: inline-block;
+  line-height: 1.4rem;
+  border-radius: 0.7rem;
+  border: 1px solid #e5e5e5;
+}
+#questionnaire-score .content .option.active{
+  border: 1px solid #5cc2fc;
+  background-color: #5cc2fc;
+  color: #fff;
+}
+#questionnaire-score .content .page{
+  position: absolute;
+  top: 88%;
+  left: 50%;
+  width: 10%;
+  margin-left: -5%;
+}
+/* 必需 */
+.expand-transition {
+  transition: all .3s ease;
+  width: 100%;
+  overflow: hidden;
+}
+/* .expand-enter 定义进入的开始状态 */
+/* .expand-leave 定义离开的结束状态 */
+.expand-enter{
+  width: 0;
+}
+.expand-leave {
+  width: 0;
+}
