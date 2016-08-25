@@ -15,10 +15,6 @@ module.exports.testjjk = function (req, res, next) {
     res.render('testjjk', {title: 'testjjk'});
 }
 
-module.exports.testjjk6 = function (req, res, next) {
-    res.render('dna-main', {title: 'testjjk'});
-}
-
 module.exports.helloreact = function (req, res, next) {
     res.render('helloreact',  {});
 }
