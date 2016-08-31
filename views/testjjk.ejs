@@ -31,6 +31,9 @@
     <h5>localStorage <span id="id_localStorage"></span></h5>
 
     <h5>data是: <span id="data"></span></h5>
+    <h5><input width="100px" id="finish_delay" type="number">
+        <button class="btn btn-info" id="finish_page">关闭页面</button>
+    </h5>
 </div>
 
 <% include common/footer.ejs %>
@@ -43,27 +46,32 @@
     }
 
     $(document).ready(function () {
-        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+        try {
+            if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
 
-            window.external.invoke("getParams", {}, function (status, result) {
-                if (status == 200) {
-                    $('#token').text(result.token);
-                    $('#processid').text(result.sid);
-                    $('#flag').text(result.iflag);
-                    $('#data').text(result.data);
-                } else {
-                    alert("get value error.");
-                }
-            });
+                window.external.invoke("getParams", {}, function (status, result) {
+                    if (status == 200) {
+                        $('#token').text(result.token);
+                        $('#processid').text(result.sid);
+                        $('#flag').text(result.iflag);
+                        $('#data').text(result.data);
+                    } else {
+                        alert("get value error.");
+                    }
+                });
 
 
-        } else if (/(Android)/i.test(navigator.userAgent)) {
-            var paramsStr = window.jjk.getParams();
-            var params = JSON.parse(paramsStr);
-            $('#token').text(params.token);
-            $('#processid').text(params.sid);
-            $('#flag').text(params.iflag);
-            $('#data').text(params.data);
+            } else if (/(Android)/i.test(navigator.userAgent)) {
+                var paramsStr = window.jjk.getParams();
+                var params = JSON.parse(paramsStr);
+                $('#token').text(params.token);
+                $('#processid').text(params.sid);
+                $('#flag').text(params.iflag);
+                $('#data').text(params.data);
+            }
+        }
+        catch (e) {
+            console.log(e.message);
         }
     });
     $(document).ready(function () {
@@ -156,6 +164,19 @@
         }
     });
 
+
+    //关闭页面
+    $(document).ready(function () {
+        $("#finish_page").on("click", function () {
+            var delay = $("#finish_delay").val();
+            if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+                window.external.invoke("finishPage", {"delay": delay}, function (status, result) {
+                });
+            } else if (/(Android)/i.test(navigator.userAgent)) {
+                window.jjk.finishPage(delay);
+            }
+        });
+    });
 
 </script>
 
