@@ -82,7 +82,7 @@
                         $('#token').text(result.token);
                         $('#processid').text(result.sid);
                         $('#flag').text(result.iflag);
-                        $('#data').text(result.sdata);
+                        $('#data').text(JSON.stringify(result.sdata));
                     } else {
                         alert("get value error.");
                     }
