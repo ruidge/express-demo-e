@@ -16,6 +16,8 @@
 
     <h3><a href="JJK://PRODUCT/2">JJK://PRODUCT/2</a></h3>
 
+    <h3><a href="JJK://PRODUCT/6">JJK://PRODUCT/6</a></h3>
+
     <h3><input type='checkbox' checked id='cbx'/> <a href="javascript:void(0)">阅读须知</a></h3>
 
     <h5>用户token是: <span id="token"></span></h5>
@@ -31,6 +33,7 @@
     <h5>localStorage <span id="id_localStorage"></span></h5>
 
     <h5>data是: <span id="data"></span></h5>
+    <h5>预约码是: <span id="bookcode"></span></h5>
     <h5><input width="100px" id="finish_delay" type="number">
         <button class="btn btn-info" id="finish_page">关闭页面</button>
     </h5>
@@ -45,6 +48,31 @@
         alert("调用了 genesFilter() 方法");
     }
 
+    $(document).ready(function () {
+        try {
+            if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+
+                window.external.invoke("getAppointCode", {}, function (status, result) {
+                    if (status == 200) {
+                        var bookcode = result;
+                        $('#bookcode').text(result);
+                    } else {
+                        alert("get value error.");
+                    }
+                });
+
+
+            } else if (/(Android)/i.test(navigator.userAgent)) {
+                var bookcode = window.jjk.getAppointCode();
+                $('#bookcode').text(bookcode);
+            }
+        }
+        catch (e) {
+            console.log(e.message);
+        }
+    });
+
+    //getParams获取传递参数
     $(document).ready(function () {
         try {
             if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
@@ -74,6 +102,8 @@
             console.log(e.message);
         }
     });
+
+    //基因问卷完成调用
     $(document).ready(function () {
         $("#to_genes_collect_guide").on("click", function () {
             if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
@@ -86,6 +116,7 @@
     });
 
 
+    //设置按钮是否可点击
     $(document).ready(function () {
         $("#cbx").change(function () {
             if (this.checked) {
@@ -116,6 +147,7 @@
         });
     });
 
+    //控制按钮显示与否
     $(document).ready(function () {
         $("#genes_filter").change(function () {
             if (this.checked) {
