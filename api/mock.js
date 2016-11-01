@@ -81,3 +81,27 @@ module.exports.getMockByPath = function (req, res, next) {
         }
     });
 }
+//router.get('/mock/:path', mock.mockDataByPath);
+module.exports.mockDataByPath = function (req, res, next) {
+    var path = req.params.path;
+    Mock.findOne({"path": path}, function (err, mock) {
+        if (!err) {
+            //console.log(mocks);
+            var result = new entity.Result();
+            if (mock) {
+                result.code = 0;
+                var a = {};
+                a.result = mock.result;
+                a.path = mock.path;
+                result.result = a;
+                res.send(result.result);
+            } else {
+                result.code = entity.constants.CODE_PATH_NOT_FOUND;
+                result.errorMsg = entity.constants.MSG_PATH_NOT_FOUND;
+                res.send(result);
+            }
+        } else {
+            res.send(err);
+        }
+    });
+}
