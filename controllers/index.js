@@ -2,7 +2,8 @@
  * Created by ruidge on 2016/2/2.
  */
 module.exports.indexRoot = function (req, res, next) {
-    res.render('index/index', {title: 'ruidge'});
+    //res.render('index/index', {title: 'ruidge'});
+    res.render('index', {name: 'John',title:'hello react'});
 }
 
 
