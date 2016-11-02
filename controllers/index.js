@@ -3,7 +3,7 @@
  */
 module.exports.indexRoot = function (req, res, next) {
     //res.render('index/index', {title: 'ruidge'});
-    res.render('index', {name: 'John',title:'hello react'});
+    res.render('index', {title:'ruidge'});
 }
 
 
