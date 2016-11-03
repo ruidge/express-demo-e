@@ -2,7 +2,6 @@ var express = require('express');
 
 var test = require('../controllers/test')
 var index = require('../controllers/index')
-var markdown = require('../controllers/markdown')
 
 var router = express.Router();
 
@@ -29,6 +28,6 @@ router.get('/mongoose', test.testMongoose);
 //router.get('/mysql', test.testMysql);
 
 //md
-router.get('/md', markdown.indexMd);
+router.get('/md', index.indexMd);
 
 module.exports = router;
