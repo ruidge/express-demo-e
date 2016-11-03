@@ -19,8 +19,6 @@ router.get('/test', test.test);
 
 router.get('/testjjk', test.testjjk);
 
-router.get('/helloreact', test.helloreact);
-
 router.get('/test/:id', test.testId);
 
 router.get('/mongoose', test.testMongoose);

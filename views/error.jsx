@@ -1,27 +1,20 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
 var React = require('react');
-var BaseNaver = require('./layouts/baseNaver.jsx');
+var BaseLayout = require('./layouts/baseLayout.jsx');
 
-class AboutPage extends React.Component {
-render() {
-return (
-<BaseNaver title={this.props.title}>
-    <div style={ {marginLeft:140,backgroundColor:'white'}}>
-    <p style={ {fontSize:20,color:'green'}}>ruidge</p>
+class ErrorPage extends React.Component {
+    render() {
+        return (
+            <BaseLayout title={this.props.title}>
+                <div style={ {marginLeft:30,marginRight:30,backgroundColor:'white'}}>
+                    <h1 style={ {fontSize:16}}>{this.props.message}</h1>
 
-    <p style={ {fontSize:20,color:'green'}}>Android Developer</p>
+                    <h1 style={ {fontSize:16}}>{this.props.error.status}</h1>
 
-    <p style={ {fontSize:20,color:'green'}}>Weibo: <a href="http://weibo.com/zr714" target="_blank">ruidge</a>
-    </p>
-
-    <p style={ {fontSize:20,color:'green'}}>Email: <a href="mailto://ruidge@qq.com" target="_blank">ruidge@qq.com</a>
-    </p>
-    </div>
-</BaseNaver>
-);
-}
+                    <pre style={ {fontSize:16}}>{this.props.error.stack}</pre>
+                </div>
+            </BaseLayout>
+        );
+    }
 }
 
-module.exports = AboutPage;
+module.exports = ErrorPage;

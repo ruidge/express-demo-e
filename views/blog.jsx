@@ -1,5 +1,5 @@
 var React = require('react');
-var BaseLayout = require('./layouts/baselayout.jsx');
+var BaseNaver = require('./layouts/baseNaver.jsx');
 
 class BlogPage extends React.Component {
 
@@ -9,11 +9,11 @@ class BlogPage extends React.Component {
 
     render() {
         return (
-            <BaseLayout title={this.props.title}>
+            <BaseNaver title={this.props.title}>
                 <div style={ {marginLeft:140,backgroundColor:'white'}}>
                     <div dangerouslySetInnerHTML={this.getHtmlData()}/>
                 </div>
-            </BaseLayout>
+            </BaseNaver>
         );
     }
 }

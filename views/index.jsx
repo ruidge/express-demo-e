@@ -1,5 +1,5 @@
 var React = require('react');
-var BaseLayout = require('./layouts/baselayout.jsx');
+var BaseNaver = require('./layouts/baseNaver.jsx');
 
 class Timer extends React.Component {
     constructor(props) {
@@ -28,10 +28,10 @@ class Timer extends React.Component {
     }
 }
 
-class HelloMessage extends React.Component {
+class HomePage extends React.Component {
     render() {
         return (
-            <BaseLayout title={this.props.title}>
+            <BaseNaver title={this.props.title}>
                 <div style={ {marginLeft:140,backgroundColor:'white'}}>
                     <label style={ {fontSize:18,marginRight:20}}>测试地址:</label>
                     <a style={ {fontSize:30,color:'green'}} href="/testjjk" target="_blank">testjjk page</a>
@@ -39,9 +39,9 @@ class HelloMessage extends React.Component {
                 <div style={ {marginLeft:140,backgroundColor:'white'}}>
                     <label style={ {fontSize:18,marginRight:20}}><Timer /></label>
                 </div>
-            </BaseLayout>
+            </BaseNaver>
         );
     }
 }
 
-module.exports = HelloMessage;
+module.exports = HomePage;

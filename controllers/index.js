@@ -39,11 +39,11 @@ module.exports.indexMd = function (req, res, next) {
         data += chunk;
     });
     readerStream.on('end', function () {
-        console.log(data);
+        //console.log(data);
         var html = converter.makeHtml(data);
         blogEntity.content = html;
         //res.send(html);
-        res.render('blog', {title: 'blog',sdata:html});
+        res.render('blog', {title: 'blog', sdata: html});
     });
 
     readerStream.on('error', function (err) {

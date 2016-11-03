@@ -5,12 +5,8 @@ class ErrorPage extends React.Component {
     render() {
         return (
             <BaseLayout title={this.props.title}>
-                <div style={ {marginLeft:30,marginRight:30,backgroundColor:'white'}}>
-                    <h1 style={ {fontSize:16}}>{this.props.message}</h1>
-
-                    <h1 style={ {fontSize:16}}>{this.props.error.status}</h1>
-
-                    <pre style={ {fontSize:16}}>{this.props.error.stack}</pre>
+                <div style={ {marginLeft:30,marginRight:30, backgroundColor:'white'}}>
+                    <h1 style={ {marginTop:100, fontSize:50}}>404 Not Found</h1>
                 </div>
             </BaseLayout>
         );
