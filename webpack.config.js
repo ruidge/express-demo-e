@@ -6,11 +6,11 @@ var path = require('path');
 var webpack = require('webpack');
 var node_modules = path.resolve(__dirname, 'node_modules');
 
-var dir_src = path.resolve(__dirname, 'src');
+var dir_src = path.resolve(__dirname, 'views');
 var dir_build = path.resolve(__dirname, 'build');
 
 module.exports = {
-    entry: path.resolve(dir_src, 'main.js'),
+    entry: path.resolve(dir_src, 'index.jsx'),
     output: {
         path: dir_build, // for standalone building
         filename: 'bundle.js'

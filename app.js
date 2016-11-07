@@ -16,7 +16,8 @@ var app = express();
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jsx');
-app.engine('jsx', require('express-react-views').createEngine());
+var options = { beautify: true };
+app.engine('jsx', require('express-react-views').createEngine(options));
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

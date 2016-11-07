@@ -4,7 +4,13 @@ var BaseNaver = require('./layouts/baseNaver.jsx');
 class Timer extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {secondsElapsed: 0};
+        this.state = {secondsElapsed: 100};
+    }
+
+    getInitialState() {
+        this.setState(() => ({
+            secondsElapsed: 1000
+        }));
     }
 
     tick() {
@@ -22,27 +28,30 @@ class Timer extends React.Component {
     }
 
     render() {
+        //重复的key只显示第一个
+        const numbers = [1, 2, 3, 4, 4, 5];
+        const listItems = numbers.map((number) =>
+                <ul key={number.toString()}>{number}</ul>
+        );
+
         return (
-            <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
+            <div>
+                <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
+            </div>
         );
     }
 }
 
-class HelloWorld extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
+var HelloWorld = React.createClass({
+    render: function () {
         const element = (
             <div style={ {fontSize:18,color:'green'}}>
                 <h1>Hello, world!</h1>
             </div>
         );
-
         return element;
     }
-}
+});
 
 class Clock extends React.Component {
     constructor(props) {
@@ -80,6 +89,7 @@ class Clock extends React.Component {
     }
 }
 
+
 class HomePage extends React.Component {
     render() {
         return (
@@ -91,7 +101,6 @@ class HomePage extends React.Component {
                 <div style={ {marginLeft:140,backgroundColor:'white'}}>
                     <HelloWorld ></HelloWorld>
                     <Clock ></Clock>
-
                 </div>
                 <div style={ {marginLeft:140,backgroundColor:'white'}}>
                     <label style={ {fontSize:18,marginRight:20}}><Timer /></label>
