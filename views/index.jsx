@@ -7,12 +7,6 @@ class Timer extends React.Component {
         this.state = {secondsElapsed: 100};
     }
 
-    getInitialState() {
-        this.setState(() => ({
-            secondsElapsed: 1000
-        }));
-    }
-
     tick() {
         this.setState((prevState) => ({
             secondsElapsed: prevState.secondsElapsed + 1
@@ -20,6 +14,7 @@ class Timer extends React.Component {
     }
 
     componentDidMount() {
+        console.log('Class Timer has mounted');
         this.interval = setInterval(() => this.tick(), 1000);
     }
 
@@ -43,52 +38,78 @@ class Timer extends React.Component {
 }
 
 var HelloWorld = React.createClass({
+
+    //Declaring Prop Types and Default Props
+    propTypes: {
+        name: React.PropTypes.string
+    },
+
+    getDefaultProps: function () {
+        return {
+            name: 'Mary'
+        };
+    },
+
+    getInitialState: function () {
+        return {count: this.props.count, name: 'Jack'};
+    },
+
     render: function () {
         const element = (
             <div style={ {fontSize:18,color:'green'}}>
-                <h1>Hello, world!</h1>
+                <h1>Hello, {this.props.name} !</h1>
             </div>
         );
         return element;
     }
 });
 
-class Clock extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {date: new Date()};
+var SetIntervalMixin = {
+    componentWillMount: function () {
+        this.intervals = [];
+    },
+    setInterval: function () {
+        this.intervals.push(setInterval.apply(null, arguments));
+    },
+    componentWillUnmount: function () {
+        this.intervals.forEach(clearInterval);
     }
+};
 
-    //lifecycle hooks
-    componentDidMount() {
-        this.timerID = setInterval(
-            () => this.tick(),
-            1000
+var TickTock = React.createClass({
+    mixins: [SetIntervalMixin], // Use the mixin
+    getInitialState: function () {
+        return {seconds: 0};
+    },
+    componentDidMount: function () {
+        this.setInterval(this.tick, 1000); // Call a method on the mixin
+    },
+    tick: function () {
+        this.setState({seconds: this.state.seconds + 1});
+    },
+    render: function () {
+        return (
+            <p>
+                React has been running for {this.state.seconds} seconds.
+            </p>
         );
     }
+});
 
-    //lifecycle hooks
-    componentWillUnmount() {
-        clearInterval(this.timerID);
+
+var InputState = React.createClass({
+    getInitialState: function () {
+        return {enable: false};
+    },
+    handleClick: function (event) {
+        this.setState({enable: !this.state.enable});
+    },
+    render: function () {
+        return (<p><input type="text" disabled={this.state.enable}/>
+            <button onClick={this.handleClick}>Change State</button>
+        </p> );
     }
-
-    tick() {
-        this.setState({
-            date: new Date()
-        });
-    }
-
-    render() {
-        const element = (
-            <div style={ {fontSize:18,color:'green'}}>
-                <h2>{this.state.date.toLocaleTimeString()}</h2>
-            </div>
-        );
-
-        return element;
-    }
-}
-
+});
 
 class HomePage extends React.Component {
     render() {
@@ -100,7 +121,8 @@ class HomePage extends React.Component {
                 </div>
                 <div style={ {marginLeft:140,backgroundColor:'white'}}>
                     <HelloWorld ></HelloWorld>
-                    <Clock ></Clock>
+                    <TickTock ></TickTock>
+                    <InputState ></InputState>
                 </div>
                 <div style={ {marginLeft:140,backgroundColor:'white'}}>
                     <label style={ {fontSize:18,marginRight:20}}><Timer /></label>

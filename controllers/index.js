@@ -26,6 +26,9 @@ module.exports.indexAbout = function (req, res, next) {
     res.render('about', {title: 'about'});
 }
 
+module.exports.indexHelloreact = function (req, res, next) {
+    res.render('helloreact', {});
+}
 
 module.exports.indexMd = function (req, res, next) {
     var data = '';

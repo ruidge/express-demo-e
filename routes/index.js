@@ -14,6 +14,8 @@ router.get('/mock', index.indexMock);
 
 router.get('/about', index.indexAbout);
 
+router.get('/helloreact', index.indexHelloreact);
+
 //test
 router.get('/test', test.test);
 
