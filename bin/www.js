@@ -18,7 +18,7 @@ var fs = require('fs');
 
 //var port = normalizePort(process.env.PORT || '3000');
 //app.set('port', port);
-var port = normalizePort(process.env.PORT || '80' || '443');
+var port = normalizePort(process.env.PORT || '3000' || '443');
 app.set('port', port);
 
 /**
@@ -34,7 +34,7 @@ var httpsServer = https.createServer(options, app);
 /**
  * Listen on provided port, on all network interfaces.
  */
-var httpPort = normalizePort(process.env.PORT || '80');
+var httpPort = normalizePort(process.env.PORT || '3000');
 server.listen(httpPort);
 server.on('error', onError);
 server.on('listening', onListening);
