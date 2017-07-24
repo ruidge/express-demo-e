@@ -40,10 +40,10 @@ server.on('error', onError);
 server.on('listening', onListening);
 
 // https
-var httpsPort = normalizePort('443');
-httpsServer.listen(httpsPort);
-httpsServer.on('error', onError);
-httpsServer.on('listening', onListening);
+//var httpsPort = normalizePort('443');
+//httpsServer.listen(httpsPort);
+//httpsServer.on('error', onError);
+//httpsServer.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
