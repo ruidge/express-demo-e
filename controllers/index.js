@@ -23,6 +23,9 @@ module.exports.indexAbout = function (req, res, next) {
     res.render('index/about', {title: 'about'});
 }
 
+//√‚∑—https÷§ È
+//http://www.chinaz.com/web/2016/0216/504896.shtml
+//https://www.namecheap.com/support/knowledgebase/article.aspx/795/69/how-to-install-ssl-certificates
 module.exports.well7a = function (req, res, next) {
     //res.sendFile(path.resolve('public/.well-know/acme-challenge/7a3mUahQIQYPEWSVoT5qbxJ-wCUFBSi8Vl1_sLVRuRY'));
 

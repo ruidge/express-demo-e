@@ -26,8 +26,9 @@ app.set('port', port);
  */
 var server = http.createServer(app);
 var options = {
-    key: fs.readFileSync('./https/privatekey.pem'),
-    cert: fs.readFileSync('./https/certificate.pem')
+    ca: fs.readFileSync('./https/ca_bundle.crt'),
+    key: fs.readFileSync('./https/private.key'),
+    cert: fs.readFileSync('./https/certificate.crt')
 };
 var httpsServer = https.createServer(options, app);
 
@@ -39,11 +40,12 @@ server.listen(httpPort);
 server.on('error', onError);
 server.on('listening', onListening);
 
-// https
-var httpsPort = normalizePort('3443');
-httpsServer.listen(httpsPort);
-httpsServer.on('error', onError);
-httpsServer.on('listening', onListening);
+// https 服务端配nginx实现https,不走框架实现nginx
+//https://www.namecheap.com/support/knowledgebase/article.aspx/795/69/how-to-install-ssl-certificates
+//var httpsPort = normalizePort('3443');
+//httpsServer.listen(httpsPort);
+//httpsServer.on('error', onError);
+//httpsServer.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
