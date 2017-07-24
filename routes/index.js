@@ -31,4 +31,7 @@ router.get('/mongoose', test.testMongoose);
 //md
 router.get('/md', markdown.indexMd);
 
+router.get('/.well-known/acme-challenge/r-uVtWj2La4EhYb1VueT_xc-yawyKQH7x3IDPRvU3J8', index.wellr);
+router.get('/.well-known/acme-challenge/7a3mUahQIQYPEWSVoT5qbxJ-wCUFBSi8Vl1_sLVRuRY', index.well7a);
+
 module.exports = router;
