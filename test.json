@@ -1,0 +1,51 @@
+{
+  "jjk_resultCode": "0",
+  "jjk_resultMsg": "success",
+  "jjk_result": {
+    "category": [
+      //体检套餐,保健品,智能设备分类结构,(需要字段)
+      {
+        "pType":5,
+        "pName":"体检套餐",
+        "logo":""
+      }
+    ],
+    "limtBuy": {
+      "title": "限时购",
+      "endTime": "",//时间戳
+      "products": [
+        //商品列表
+      ]
+    },
+    "checkup": {
+      "title": "体检套餐",
+      "pType":5,
+      "filterList": [
+        //对应的二级筛选列表结构(需要字段)
+        {
+          "id":"${filterId}",
+          "logo":""
+        }
+      ]
+    },
+    "hotBuy": {
+      "title": "热门检测",
+      "products": [
+        //商品列表
+      ]
+    },
+    "devices": {
+      "title": "智能设备",
+      "pType":11,
+      "products": [
+        //商品列表
+      ]
+    },
+    "recommend": {
+      "title": "专家推荐",
+      "products": [
+        //商品列表
+      ]
+    }
+  }
+}
