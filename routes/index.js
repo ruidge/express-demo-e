@@ -29,7 +29,8 @@ router.get('/mongoose', test.testMongoose);
 //router.get('/mysql', test.testMysql);
 
 //md
-router.get('/md', markdown.indexMd);
+router.get('/mds', markdown.indexList);
+router.get('/mdn/:name', markdown.indexMd);
 
 router.get('/.well-known/acme-challenge/r-uVtWj2La4EhYb1VueT_xc-yawyKQH7x3IDPRvU3J8', index.wellr);
 router.get('/.well-known/acme-challenge/7a3mUahQIQYPEWSVoT5qbxJ-wCUFBSi8Vl1_sLVRuRY', index.well7a);

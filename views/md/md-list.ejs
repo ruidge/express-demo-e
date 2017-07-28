@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <% include ../common/header.ejs %>
+</head>
+
+<body>
+<% include ../common/navbar.ejs %>
+
+<div class="container">
+    <% locals.list.forEach(function(name){ %>
+    <ul><a href=" <%= name %>"> <%= name %></a></ul>
+    <% }) %>
+
+</div>
+
+<% include ../common/footer.ejs %>
+<script>
+    $(function () {
+        $('#bs-example-navbar-collapse-1 li').removeClass('active');
+        $('#id_tab_blog').addClass('active');
+    });
+</script>
+</body>
+</html>
