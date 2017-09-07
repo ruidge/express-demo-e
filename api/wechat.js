@@ -3,7 +3,7 @@
  */
 
 var WXBizDataCrypt = require('../utils/wechat/WXBizDataCrypt')
-var CryptoUtils = require('../utils/CryptoUtils')
+var CryptoUtils = require('../utils/utils')
 var request = require('request');
 var models = require('../models/index');
 var entity = require('../entity/index');
@@ -57,7 +57,7 @@ module.exports.wechatTest = function (req, res, next) {
 }
 
 function getAuthUrl(code) {
-    var AppID = "wx6dfc2722b0138330";
+    var AppID = entity.constants.WX_APPID;
     var AppSecret = "6f1d3a64df14df284b5e10a546cc1be1";
     var wxAuthUrl = "https://api.weixin.qq.com/sns/jscode2session?" +
         "appid=" + AppID + "&secret=" + AppSecret + "&js_code=" + code + "&grant_type=authorization_code"
@@ -163,23 +163,31 @@ module.exports.login = function (req, res, next) {
 
     }
 }
-
 module.exports.getSteps = function (req, res, next) {
     var data = req.body.data;
     var iv = req.body.iv;
-    var code = req.body.code;
-    console.log("data: " + data + ", iv: " + iv + ", code: " + code);
-//get «Î«ÛÕ‚Õ¯
-    request({
-        url: getAuthUrl(code),
-        method: 'GET'
-    }, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            console.log(body);
-            var sessionKey = JSON.parse(body).session_key;
-            console.log(sessionKey);
-        }
-    });
-    res.send(req.body.code);
+    var sessionId = req.body.sessionId;
+    if (sessionId) {
+        WxSession.findOne({"session_id": sessionId}, function (err, wxSession) {
+            if (err) {
+                console.log(err);
+                res.send(err);
+                return;
+            }
+            if (wxSession) {
+                console.log(wxSession);
+                var sessionKey = wxSession.session_key;
+                var AppID = entity.constants.WX_APPID;
+                var pc = new WXBizDataCrypt(AppID, sessionKey)
+                data = pc.decryptData(data, iv)
+                console.log(data);
+                var result = new entity.Result();
+                result.code = 0;
+                result.errorMsg = "get steps success";
+                result.result = data;
+                res.send(result);
+            }
+        });
+    }
 
 }
