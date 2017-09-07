@@ -3,7 +3,7 @@
  */
 
 var WXBizDataCrypt = require('../utils/wechat/WXBizDataCrypt')
-var CryptoUtils = require('../utils/CommonUtils')
+var CryptoUtils = require('../utils/CryptoUtils')
 var request = require('request');
 var models = require('../models/index');
 var entity = require('../entity/index');
