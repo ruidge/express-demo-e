@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var config = require('../config');
 
 mongoose.connect(config.db, {
-    server: {poolSize: 20}
+    useMongoClient: true
 }, function (err) {
     if (err) {
         console.log('connect to ' + config.db + ' error: ' + err.message);
@@ -17,10 +17,12 @@ mongoose.connect(config.db, {
 require('./user');
 require('./blog');
 require('./mock');
+require('./wxSession');
 
 exports.User = mongoose.model('User');
 exports.Blog = mongoose.model('Blog');
 exports.Mock = mongoose.model('Mock');
+exports.WxSession = mongoose.model('WxSession');
 
 
 //可以直接require一个目录，假设有一个目录名为folder，如

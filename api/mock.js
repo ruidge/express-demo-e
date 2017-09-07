@@ -16,27 +16,44 @@ module.exports.addMock = function (req, res, next) {
     //console.log(req.body);
     //console.log(req.headers);
 
-    Mock.findByPath()
-
     var mockEntity = new Mock();
     mockEntity.path = req.body.path;
     mockEntity.result = req.body.result;
-    mockEntity.save(function (err, doc) {
-        if (err) {
-            var result = new entity.Result();
-            if (err.code == 11000) {
-                result.code = entity.constants.CODE_PATH_ALREADY_EXISTS;
-                result.errorMsg = entity.constants.MSG_PATH_ALREADY_EXISTS;
-            }
-        } else {
-            var result = new entity.Result();
-            result.code = 0;
-            result.result = doc;
-        }
-        //console.log(JSON.stringify(result));
-        res.send(result);
+    Mock.findOne({"path": mockEntity.path}, function (err, mock) {
+        if (mock) {
+            console.log(mock);
+            mock.path = mockEntity.path;
+            mock.result = mockEntity.result;
+            mock.save(function (err, doc) {
+                if (!err) {
+                    var result = new entity.Result();
+                    result.code = 0;
+                    result.result = doc;
+                }
+                res.send(result);
 
+            });
+        } else {
+            mockEntity.save(function (err, doc) {
+                if (err) {
+                    var result = new entity.Result();
+                    if (err.code == 11000) {
+                        result.code = entity.constants.CODE_PATH_ALREADY_EXISTS;
+                        result.errorMsg = entity.constants.MSG_PATH_ALREADY_EXISTS;
+                    }
+                } else {
+                    var result = new entity.Result();
+                    result.code = 0;
+                    result.result = doc;
+                }
+                //console.log(JSON.stringify(result));
+                res.send(result);
+
+            });
+        }
     });
+
+
 }
 
 //router.get('/getmocks', mock.getMocks);
@@ -112,28 +129,28 @@ module.exports.wechatTest = function (req, res, next) {
     var appId = 'wx4f4bc4dec97d474b'
     var sessionKey = 'tiihtNczf5v6AKRyjwEUhQ=='
     var encryptedData =
-        'CiyLU1Aw2KjvrjMdj8YKliAjtP4gsMZM'+
-        'QmRzooG2xrDcvSnxIMXFufNstNGTyaGS'+
-        '9uT5geRa0W4oTOb1WT7fJlAC+oNPdbB+'+
-        '3hVbJSRgv+4lGOETKUQz6OYStslQ142d'+
-        'NCuabNPGBzlooOmB231qMM85d2/fV6Ch'+
-        'evvXvQP8Hkue1poOFtnEtpyxVLW1zAo6'+
-        '/1Xx1COxFvrc2d7UL/lmHInNlxuacJXw'+
-        'u0fjpXfz/YqYzBIBzD6WUfTIF9GRHpOn'+
-        '/Hz7saL8xz+W//FRAUid1OksQaQx4CMs'+
-        '8LOddcQhULW4ucetDf96JcR3g0gfRK4P'+
-        'C7E/r7Z6xNrXd2UIeorGj5Ef7b1pJAYB'+
-        '6Y5anaHqZ9J6nKEBvB4DnNLIVWSgARns'+
-        '/8wR2SiRS7MNACwTyrGvt9ts8p12PKFd'+
-        'lqYTopNHR1Vf7XjfhQlVsAJdNiKdYmYV'+
-        'oKlaRv85IfVunYzO0IKXsyl7JCUjCpoG'+
-        '20f0a04COwfneQAGGwd5oa+T8yO5hzuy'+
+        'CiyLU1Aw2KjvrjMdj8YKliAjtP4gsMZM' +
+        'QmRzooG2xrDcvSnxIMXFufNstNGTyaGS' +
+        '9uT5geRa0W4oTOb1WT7fJlAC+oNPdbB+' +
+        '3hVbJSRgv+4lGOETKUQz6OYStslQ142d' +
+        'NCuabNPGBzlooOmB231qMM85d2/fV6Ch' +
+        'evvXvQP8Hkue1poOFtnEtpyxVLW1zAo6' +
+        '/1Xx1COxFvrc2d7UL/lmHInNlxuacJXw' +
+        'u0fjpXfz/YqYzBIBzD6WUfTIF9GRHpOn' +
+        '/Hz7saL8xz+W//FRAUid1OksQaQx4CMs' +
+        '8LOddcQhULW4ucetDf96JcR3g0gfRK4P' +
+        'C7E/r7Z6xNrXd2UIeorGj5Ef7b1pJAYB' +
+        '6Y5anaHqZ9J6nKEBvB4DnNLIVWSgARns' +
+        '/8wR2SiRS7MNACwTyrGvt9ts8p12PKFd' +
+        'lqYTopNHR1Vf7XjfhQlVsAJdNiKdYmYV' +
+        'oKlaRv85IfVunYzO0IKXsyl7JCUjCpoG' +
+        '20f0a04COwfneQAGGwd5oa+T8yO5hzuy' +
         'Db/XcxxmK01EpqOyuxINew=='
     var iv = 'r7BXXKkLb8qrSNn05n0qiA=='
 
     var pc = new WXBizDataCrypt(appId, sessionKey)
 
-    var data = pc.decryptData(encryptedData , iv)
+    var data = pc.decryptData(encryptedData, iv)
 
     console.log('解密后 data: ', data)
 // 解密后的数据为

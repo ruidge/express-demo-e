@@ -3,6 +3,13 @@
  */
 
 var WXBizDataCrypt = require('../utils/wechat/WXBizDataCrypt')
+var CryptoUtils = require('../utils/CommonUtils')
+var request = require('request');
+var models = require('../models/index');
+var entity = require('../entity/index');
+
+var WxSession = models.WxSession;
+
 module.exports.wechatTest = function (req, res, next) {
     var appId = 'wx4f4bc4dec97d474b'
     var sessionKey = 'tiihtNczf5v6AKRyjwEUhQ=='
@@ -47,4 +54,132 @@ module.exports.wechatTest = function (req, res, next) {
 //     "appid": "wx4f4bc4dec97d474b"
 //   }
 // }
+}
+
+function getAuthUrl(code) {
+    var AppID = "wx6dfc2722b0138330";
+    var AppSecret = "6f1d3a64df14df284b5e10a546cc1be1";
+    var wxAuthUrl = "https://api.weixin.qq.com/sns/jscode2session?" +
+        "appid=" + AppID + "&secret=" + AppSecret + "&js_code=" + code + "&grant_type=authorization_code"
+    return wxAuthUrl;
+}
+function getSessionId(sessionKey, openid) {
+    var data = sessionKey + "-" + openid;
+    var key = "ruidge";
+    return CryptoUtils.aesEncrypt(data, key);
+}
+
+module.exports.login = function (req, res, next) {
+    var sessionId = req.body.sessionId;
+    var code = req.body.code;
+    console.log("sessionId: " + sessionId + ", code: " + code);
+    if (sessionId) {
+        WxSession.findOne({"session_id": sessionId}, function (err, wxSession) {
+            if (err) {
+                console.log(err);
+                res.send(err);
+                return;
+            }
+            if (wxSession) {
+                console.log(wxSession);
+                var result = new entity.Result();
+                result.code = 0;
+                result.errorMsg = "sessionId from mongo";
+                result.result = sessionId;
+                res.send(result);
+            }
+        });
+    } else {
+        //get 请求外网
+        request({
+            url: getAuthUrl(code),
+            method: 'GET'
+        }, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log(body);
+                var session = JSON.parse(body);
+                if (session.errcode || session.errmsg) {
+                    var result = new entity.Result();
+                    result.code = session.errcode;
+                    result.errorMsg = session.errmsg;
+                    result.result = null;
+                    res.send(result);
+                    return;
+                }
+
+                var sessionKey = session.session_key;
+                var openid = session.openid;
+
+                var wxsession = new WxSession();
+                wxsession.session_key = sessionKey;
+                wxsession.openid = openid;
+                wxsession.session_id = getSessionId(sessionKey, openid);
+                console.log("sessionId : " + wxsession.sessionId);
+
+                WxSession.findOne({"session_id": wxsession.session_id}, function (err, result) {
+                    //if (err) {
+                    //    console.log(err);
+                    //    res.send(err);
+                    //    return;
+                    //}
+                    if (result) {
+                        console.log(result);
+                        result.sessionKey = wxsession.session_key;
+                        result.openid = wxsession.openid;
+                        result.save(function (err, doc) {
+                            if (err) {
+                                console.log(err);
+                                res.send(err);
+                                return;
+                            }
+                            if (doc) {
+                                var result = new entity.Result();
+                                result.code = 0;
+                                result.errorMsg = "update success";
+                                result.result = wxsession.session_id;
+                                res.send(result);
+                            }
+                        });
+                    } else {
+                        wxsession.save(function (err, doc) {
+                            if (err) {
+                                console.log(err);
+                                res.send(err);
+                                return;
+                            }
+                            if (doc) {
+                                var result = new entity.Result();
+                                result.code = 0;
+                                result.errorMsg = "save success";
+                                result.result = wxsession.session_id;
+                                res.send(result);
+                            }
+
+                        });
+                    }
+                });
+            }
+        });
+
+    }
+}
+
+module.exports.getSteps = function (req, res, next) {
+    var data = req.body.data;
+    var iv = req.body.iv;
+    var code = req.body.code;
+    console.log("data: " + data + ", iv: " + iv + ", code: " + code);
+//get 请求外网
+    request({
+        url: getAuthUrl(code),
+        method: 'GET'
+    }, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log(body);
+            var sessionKey = JSON.parse(body).session_key;
+            console.log(sessionKey);
+        }
+    });
+    res.send(req.body.code);
+
 }
