@@ -70,8 +70,9 @@ function getSessionId(sessionKey, openid) {
 }
 
 module.exports.login = function (req, res, next) {
-    var sessionId = req.body.sessionId;
-    var code = req.body.code;
+    var body = JSON.parse(req.body);
+    var sessionId = body.sessionId;
+    var code = body.code;
     console.log("sessionId: " + sessionId + ", code: " + code);
     if (sessionId) {
         WxSession.findOne({"session_id": sessionId}, function (err, wxSession) {
@@ -164,9 +165,10 @@ module.exports.login = function (req, res, next) {
     }
 }
 module.exports.getSteps = function (req, res, next) {
-    var data = req.body.data;
-    var iv = req.body.iv;
-    var sessionId = req.body.sessionId;
+    var body = JSON.parse(req.body);
+    var data = body.data;
+    var iv = body.iv;
+    var sessionId = body.sessionId;
     if (sessionId) {
         WxSession.findOne({"session_id": sessionId}, function (err, wxSession) {
             if (err) {
