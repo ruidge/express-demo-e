@@ -70,9 +70,9 @@ function getSessionId(sessionKey, openid) {
 }
 
 module.exports.login = function (req, res, next) {
-    var body = JSON.parse(req.body);
-    var sessionId = body.sessionId;
-    var code = body.code;
+    console.log(req.body);
+    var sessionId = req.body.sessionId;
+    var code = req.body.code;
     console.log("sessionId: " + sessionId + ", code: " + code);
     if (sessionId) {
         WxSession.findOne({"session_id": sessionId}, function (err, wxSession) {
@@ -160,15 +160,18 @@ module.exports.login = function (req, res, next) {
                     }
                 });
             }
+            else{
+                res.send(error);
+            }
         });
 
     }
 }
 module.exports.getSteps = function (req, res, next) {
-    var body = JSON.parse(req.body);
-    var data = body.data;
-    var iv = body.iv;
-    var sessionId = body.sessionId;
+    console.log(req.body);
+    var data = req.body.data;
+    var iv = req.body.iv;
+    var sessionId = req.body.sessionId;
     if (sessionId) {
         WxSession.findOne({"session_id": sessionId}, function (err, wxSession) {
             if (err) {
