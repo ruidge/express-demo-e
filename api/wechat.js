@@ -58,7 +58,7 @@ module.exports.wechatTest = function (req, res, next) {
 
 function getAuthUrl(code) {
     var AppID = entity.constants.WX_APPID;
-    var AppSecret = "6f1d3a64df14df284b5e10a546cc1be1";
+    var AppSecret = entity.constants.WX_APPSECRET;
     var wxAuthUrl = "https://api.weixin.qq.com/sns/jscode2session?" +
         "appid=" + AppID + "&secret=" + AppSecret + "&js_code=" + code + "&grant_type=authorization_code"
     return wxAuthUrl;

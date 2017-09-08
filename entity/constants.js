@@ -3,6 +3,7 @@
  */
 exports.constants = {
     WX_APPID: "wx6dfc2722b0138330",
+    WX_APPSECRET: "6f1d3a64df14df284b5e10a546cc1be1",
 
 
 
