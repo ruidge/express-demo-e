@@ -30,7 +30,7 @@ module.exports.well7a = function (req, res, next) {
 
     var data = '';
     //var fileName = 'public/.well-know/acme-challenge/7a3mUahQIQYPEWSVoT5qbxJ-wCUFBSi8Vl1_sLVRuRY';
-    var fileName = 'public/.well-know/acme-challenge/sB4DI65jEflsxm0_rqiEZp1Bdi47e3qPPRKszbzVAVI';
+    var fileName = 'public/.well-know/acme-challenge/uFjEwBp88__CQ8os0iX_p2JYJJCEdEsOa4zN8xYz7tU';
     var readerStream = fs.createReadStream(fileName);
     readerStream.setEncoding('UTF8');
     readerStream.on('data', function (chunk) {
@@ -46,7 +46,7 @@ module.exports.wellr = function (req, res, next) {
     //res.sendFile(path.resolve('public/.well-know/acme-challenge/r-uVtWj2La4EhYb1VueT_xc-yawyKQH7x3IDPRvU3J8'));
     var data = '';
     //var fileName = 'public/.well-know/acme-challenge/r-uVtWj2La4EhYb1VueT_xc-yawyKQH7x3IDPRvU3J8';
-    var fileName = 'public/.well-know/acme-challenge/uFjEwBp88__CQ8os0iX_p2JYJJCEdEsOa4zN8xYz7tU';
+    var fileName = 'public/.well-know/acme-challenge/EXsjXAcJxLqDfCIX4hdlAyZPvslHt3jGNUGRLM2EnEc';
     var readerStream = fs.createReadStream(fileName);
     readerStream.setEncoding('UTF8');
     readerStream.on('data', function (chunk) {

@@ -34,7 +34,7 @@ router.get('/mdn/:name', markdown.indexMd);
 
 //router.get('/.well-known/acme-challenge/r-uVtWj2La4EhYb1VueT_xc-yawyKQH7x3IDPRvU3J8', index.wellr);
 //router.get('/.well-known/acme-challenge/7a3mUahQIQYPEWSVoT5qbxJ-wCUFBSi8Vl1_sLVRuRY', index.well7a);
-router.get('/.well-known/acme-challenge/uFjEwBp88__CQ8os0iX_p2JYJJCEdEsOa4zN8xYz7tU', index.wellr);
-router.get('/.well-known/acme-challenge/sB4DI65jEflsxm0_rqiEZp1Bdi47e3qPPRKszbzVAVI', index.well7a);
+router.get('/.well-known/acme-challenge/EXsjXAcJxLqDfCIX4hdlAyZPvslHt3jGNUGRLM2EnEc', index.wellr);
+router.get('/.well-known/acme-challenge/uFjEwBp88__CQ8os0iX_p2JYJJCEdEsOa4zN8xYz7tU', index.well7a);
 
 module.exports = router;
