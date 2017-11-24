@@ -36,10 +36,11 @@ void loadLibrary(String libname)<br/>
 1. 将jar包解压目录(如test),通过JD-GUI查找需要修改的class类.<br/>
 2. 创建一个一样包名,类名的.java文件,把.class的文件复制进去,修改对应的地方.<br/>
 3. build成.class文件,在test中复制替换掉原来的.class<br/>
-4. 重新打包成jar:jar cvf test.jar test 重命名test.jar为目标名字.<br/>
+4. 重新打包成jar:进入目录jar cvf test.jar . 重命名test.jar为目标名字.<br/>
 5. 替换工程中的jar包,这时候就可以工作了.
 
 
 #####参考 <br/>
 > [http://godcoder.me/2017/03/29/Android%20%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDso%E5%BA%93%E6%96%87%E4%BB%B6/](http://godcoder.me/2017/03/29/Android%20%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDso%E5%BA%93%E6%96%87%E4%BB%B6/) <br/>
 > [http://blog.csdn.net/aqi00/article/details/72763742](http://blog.csdn.net/aqi00/article/details/72763742) <br/>
+> [http://blog.csdn.net/junjie319/article/details/43601287](http://blog.csdn.net/junjie319/article/details/43601287)
