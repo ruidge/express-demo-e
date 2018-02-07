@@ -1,4 +1,7 @@
 ## OPENGL AND MATRIX
+#####AR && SLAM
+[http://www.cnblogs.com/luyb/p/6481725.html](http://www.cnblogs.com/luyb/p/6481725.html)<br/>
+[http://www.cnblogs.com/luyb/p/6681821.html](http://www.cnblogs.com/luyb/p/6681821.html)
 
 #####齐次坐标
 [http://www.cnblogs.com/kesalin/archive/2009/09/09/homogeneous.html](http://www.cnblogs.com/kesalin/archive/2009/09/09/homogeneous.html)
